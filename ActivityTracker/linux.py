@@ -5,6 +5,15 @@ import sys
 import os
 import subprocess
 import re
+import time
+#from os import system
+from dateutil import parser
+import datetime
+import json
+from activity import *
+
+
+
 
 
 def get_active_window_raw():
@@ -39,17 +48,48 @@ this file alone can be run without importing other files
 uncomment the below lines for linux - works - but activities won't be dumped in json file
 (may be it works for other OS also, not sure)
 '''
+
+
+activeList = AcitivyList([])
 def run():
      new_window = None
      current_window = get_active_window_raw()
+
+     #active_window_name = ""
+     #activity_name = ""
+     start_time = datetime.datetime.now()
+     first_time = True
      while(True):
          if new_window != current_window:
                 if current_window != None:
                     current_window = str(current_window)
                     print(current_window[1:])
+                    current_window = current_window[1:]
+                if not first_time:
+                    end_time = datetime.datetime.now()
+                    time_entry = TimeEntry(start_time, end_time, 0, 0, 0, 0)
+                    time_entry._get_specific_times()
+                    #print(time_entry.seconds)
+
+                    exists = False
+                    for activity in activeList.activities:
+                        if activity.name == current_window:
+                            exists = True
+                            activity.time_entries.append(time_entry)
+
+                    if not exists:
+                        activity = Activity(current_window, [time_entry])
+                        activeList.activities.append(activity)
+                    json_file = open('activities.json', 'w')
+                    json.dump(activeList.serialize(), json_file,
+                                  indent=4, sort_keys=True)
+                    start_time = datetime.datetime.now()
+                first_time = False
+
 
                  #print(type(current_window))
                 current_window = new_window
+         time.sleep(1)
          new_window = get_active_window_raw()
 
 
@@ -64,11 +104,10 @@ def get_chrome_url_x():
         detail_list = detail_list[::-1]
         _active_window_name = 'Google Chrome -> ' + " / ".join(detail_list)
         return _active_window_name
-'''
+
 def get_active_window_x():
     full_detail = get_active_window_raw()
 
     detail_list = None if None else full_detail.split(" - ")
     new_window_name = detail_list[-1]
     return new_window_name
-'''
