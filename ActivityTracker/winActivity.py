@@ -6,18 +6,10 @@ from json.decoder import JSONDecodeError
 class WinAcitivyList:
     def __init__(self, activities):
         self.activities = activities
-#        json.dumps(self.activities)
+
     def initialize_me(self, data):
-            # activity_list = AcitivyList([])
             with open('activities.json', 'w') as f:
                 json.dump(data, f,indent=4, sort_keys=True)
-            #     data = json.load(f)
-                #rint("type: ",type(data))
-                #print("dict:", data)
-            # activity_list = AcitivyList(
-            #     activities = self.get_activities_from_json(data)
-            # )
-            # return activity_list
 
     def get_activities_from_json(self, data):
         return_list = []
@@ -78,7 +70,7 @@ class WinActivity:
         self.time_entries = time_entries
 
     def serialize(self):
-        #data = {}
+
         with open('activities.json', 'r') as f:
             data = json.load(f)
         #print(data['activities'][0]['SOFTWARE'])
@@ -89,20 +81,8 @@ class WinActivity:
         data['activities'][0]['SOFTWARE'].update({
                 (self.name) : {'time_entries' : self.make_time_entires_to_json()}
             })
-        #print(data['activities'][0]['SOFTWARE'])
 
-        '''f1 = open('activities.json', 'w+')
-        json.dump(data, f1,
-            indent=4, sort_keys=True)
-        #return{
-        #    "SOFTWARE":{
-        #        'name' : self.name,
-        #        'time_entries' : self.make_time_entires_to_json()
-        #    }
-        #}
-        f1.close()
-        return '''
-        print("::::::::::::::::::::::::\n",data['activities'][0]['SOFTWARE'],"\n::::::::::::::::::::::::::::")
+        #print("::::::::::::::::::::::::\n",data['activities'][0]['SOFTWARE'],"\n::::::::::::::::::::::::::::")
         return data['activities']
 
     def serialize_browser(self, new_window_name):
@@ -119,10 +99,7 @@ class WinActivity:
             data['activities'][1]['WEBSITE TRACKING']['Google Chrome'].update({
                 (self.name) : {'time_entries' : self.make_time_entires_to_json()}
             })
-        '''f1 = open('activities.json', 'w+')
-        json.dump(data, f1,
-            indent=4, sort_keys=True)
-        f1.close()'''
+        
         return data['activities']
 
         #print("SERIALIZE_BROWSER: ",new_window_name)
