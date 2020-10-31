@@ -48,7 +48,7 @@ def get_chrome_url():
         edit = chromeControl.EditControl()
         return 'https://' + edit.GetValuePattern().Value
     elif sys.platform in ['Mac', 'darwin', 'os2', 'os2emx']:
-        textOfMyScript = """tell app "google chrome" to get the url of the active tab of window 1"""
+        textOfMyScript = """tell app "google chrome " to get the url of the active tab of window 1"""
         s = NSAppleScript.initWithSource_(
             NSAppleScript.alloc(), textOfMyScript)
         results, err = s.executeAndReturnError_(None)
@@ -74,7 +74,7 @@ try:
                 new_window_name = url_to_name(get_chrome_url())
         if sys.platform in ['linux', 'linux2']:
             new_window_name = l.get_active_window_x()
-            if 'Google Chrome' in new_window_name:
+            if 'Google Chrome' in new_window_name or 'Mozilla Firefox' in new_window_name:
                 new_window_name = l.get_chrome_url_x()
 
 
