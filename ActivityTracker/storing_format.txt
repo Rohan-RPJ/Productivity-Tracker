@@ -1,0 +1,41 @@
+{
+	"activities":[{
+		"sotware":{},
+		"website":{
+			"prod":{
+				"Arts":{
+					"url":{
+						"title":"val",
+						"time_spent":"val",
+					}
+				},
+				"Science":{},
+			},
+			"unprod":{}
+		},
+	}]
+}
+
+
+inner_format={
+	"productive":{
+		'business':{},'computers':{},'health':{},'news':{},'science':{},'sports':{},'recreation':{}
+	},
+	"unproductive":{
+		'arts':{},'games':{},'home':{},'shopping':{}, 'society':{},'reference':{}
+	},
+}
+
+format = {
+	"activities": [
+		{
+			"software":inner_format
+		},
+		{
+			"website":inner_format
+		},
+		{
+			"others":{}
+		}
+	]
+}

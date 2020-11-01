@@ -1,203 +1,95 @@
 {
     "activities": [
         {
-            "name": null,
-            "time_entries": [
-                {
-                    "days": 0,
-                    "end_time": "2020-10-13 14:10:26",
-                    "hours": 0,
-                    "minutes": 0,
-                    "seconds": 1,
-                    "start_time": "2020-10-13 14:10:25"
+            "software": {
+                "productive": {
+                    "Business": {},
+                    "Computers": {
+                        "Command Prompt - python  winAutoTimer.py": {
+                            "time_spent": "0h 0m 36s"
+                        }
+                    },
+                    "Health": {},
+                    "News": {},
+                    "Recreation": {},
+                    "Science": {
+                        "D:\\BE-Project\\Website+Software Tracking\\Productivity-Tracker\\ActivityTracker\\activities.json - Sublime Text (UNREGISTERED)": {
+                            "time_spent": "0h 2m 47s"
+                        },
+                        "D:\\BE-Project\\Website+Software Tracking\\Productivity-Tracker\\ActivityTracker\\data.py - Sublime Text (UNREGISTERED)": {
+                            "time_spent": "0h 0m 23s"
+                        },
+                        "D:\\BE-Project\\Website+Software Tracking\\Productivity-Tracker\\ActivityTracker\\predictions.py - Sublime Text (UNREGISTERED)": {
+                            "time_spent": "0h 0m 2s"
+                        },
+                        "D:\\BE-Project\\Website+Software Tracking\\Productivity-Tracker\\ActivityTracker\\winActivity.py - Sublime Text (UNREGISTERED)": {
+                            "time_spent": "0h 0m 2s"
+                        },
+                        "D:\\BE-Project\\Website+Software Tracking\\Productivity-Tracker\\ActivityTracker\\winAutoTimer.py - Sublime Text (UNREGISTERED)": {
+                            "time_spent": "0h 0m 3s"
+                        },
+                        "Your battery is running low.": {
+                            "time_spent": "0h 0m 11s"
+                        }
+                    },
+                    "Sports": {}
                 },
-                {
-                    "days": 0,
-                    "end_time": "2020-10-13 14:16:00",
-                    "hours": 0,
-                    "minutes": 0,
-                    "seconds": 6,
-                    "start_time": "2020-10-13 14:15:54"
+                "unproductive": {
+                    "Arts": {},
+                    "Games": {},
+                    "Home": {},
+                    "Reference": {},
+                    "Shopping": {},
+                    "Society": {}
+                }
+            }
+        },
+        {
+            "website": {
+                "productive": {
+                    "Business": {},
+                    "Computers": {
+                        "https://realpython.com/python-kwargs-and-args/": {
+                            "time_spent": "0h 0m 1s",
+                            "title": "Python args and kwargs: Demystified \u2013 Real Python"
+                        }
+                    },
+                    "Health": {},
+                    "News": {},
+                    "Recreation": {},
+                    "Science": {},
+                    "Sports": {}
                 },
-                {
-                    "days": 0,
-                    "end_time": "2020-10-13 14:16:12",
-                    "hours": 0,
-                    "minutes": 0,
-                    "seconds": 2,
-                    "start_time": "2020-10-13 14:16:10"
+                "unproductive": {
+                    "Arts": {
+                        "https://www.youtube.com/watch?v=OgiJhMTGDkQ": {
+                            "time_spent": "0h 0m 1s",
+                            "title": "Shawn Mendes, Camila Cabello - Se\u00c3\u00b1orita (Lyrics) - YouTube"
+                        }
+                    },
+                    "Games": {},
+                    "Home": {},
+                    "Reference": {},
+                    "Shopping": {},
+                    "Society": {
+                        "https://www.youtube.com/watch?v=6LqYiZynavU": {
+                            "time_spent": "0h 0m 16s",
+                            "title": "India Stands With French Prez Macron In Fight Against Terrorism | The Debate With Arnab Goswami - YouTube"
+                        },
+                        "https://www.youtube.com/watch?v=8LagjAHfPMI": {
+                            "time_spent": "0h 0m 1s",
+                            "title": "Is Appeasement Politics Above The War Against Terrorism? | Arnab Goswami Debates - YouTube"
+                        },
+                        "https://www.youtube.com/watch?v=DVRR363HVNg": {
+                            "time_spent": "0h 0m 17s",
+                            "title": "Pakistan Admits To Role In Pulwama Terror Attack | The Debate With Arnab Goswami - YouTube"
+                        }
+                    }
                 }
-            ]
+            }
         },
         {
-            "name": "'shubham@shubham-Inspiron-5567: ~/git_workspace/Productivity-Tracker/ActivityTracker'",
-            "time_entries": [
-                {
-                    "days": 0,
-                    "end_time": "2020-10-13 14:10:31",
-                    "hours": 0,
-                    "minutes": 0,
-                    "seconds": 5,
-                    "start_time": "2020-10-13 14:10:26"
-                }
-            ]
-        },
-        {
-            "name": "'14 inches to cm - Google Search - Google Chrome'",
-            "time_entries": [
-                {
-                    "days": 0,
-                    "end_time": "2020-10-13 14:10:45",
-                    "hours": 0,
-                    "minutes": 0,
-                    "seconds": 14,
-                    "start_time": "2020-10-13 14:10:31"
-                }
-            ]
-        },
-        {
-            "name": "'best bus tyre size - Google Search - Google Chrome'",
-            "time_entries": [
-                {
-                    "days": 0,
-                    "end_time": "2020-10-13 14:11:18",
-                    "hours": 0,
-                    "minutes": 0,
-                    "seconds": 32,
-                    "start_time": "2020-10-13 14:10:45"
-                }
-            ]
-        },
-        {
-            "name": "'scania bus price - Google Search - Google Chrome'",
-            "time_entries": [
-                {
-                    "days": 0,
-                    "end_time": "2020-10-13 14:13:54",
-                    "hours": 0,
-                    "minutes": 2,
-                    "seconds": 36,
-                    "start_time": "2020-10-13 14:11:18"
-                }
-            ]
-        },
-        {
-            "name": "'scania n230 showroom price - Google Search - Google Chrome'",
-            "time_entries": [
-                {
-                    "days": 0,
-                    "end_time": "2020-10-13 14:14:35",
-                    "hours": 0,
-                    "minutes": 0,
-                    "seconds": 40,
-                    "start_time": "2020-10-13 14:13:54"
-                }
-            ]
-        },
-        {
-            "name": "'Atom'",
-            "time_entries": [
-                {
-                    "days": 0,
-                    "end_time": "2020-10-13 14:15:22",
-                    "hours": 0,
-                    "minutes": 0,
-                    "seconds": 46,
-                    "start_time": "2020-10-13 14:14:35"
-                },
-                {
-                    "days": 0,
-                    "end_time": "2020-10-13 14:15:54",
-                    "hours": 0,
-                    "minutes": 0,
-                    "seconds": 12,
-                    "start_time": "2020-10-13 14:15:42"
-                },
-                {
-                    "days": 0,
-                    "end_time": "2020-10-13 14:16:10",
-                    "hours": 0,
-                    "minutes": 0,
-                    "seconds": 6,
-                    "start_time": "2020-10-13 14:16:04"
-                },
-                {
-                    "days": 0,
-                    "end_time": "2020-10-13 14:16:22",
-                    "hours": 0,
-                    "minutes": 0,
-                    "seconds": 9,
-                    "start_time": "2020-10-13 14:16:12"
-                }
-            ]
-        },
-        {
-            "name": "'ActivityTracker'",
-            "time_entries": [
-                {
-                    "days": 0,
-                    "end_time": "2020-10-13 14:15:25",
-                    "hours": 0,
-                    "minutes": 0,
-                    "seconds": 3,
-                    "start_time": "2020-10-13 14:15:22"
-                }
-            ]
-        },
-        {
-            "name": "'Desktop'",
-            "time_entries": [
-                {
-                    "days": 0,
-                    "end_time": "2020-10-13 14:15:27",
-                    "hours": 0,
-                    "minutes": 0,
-                    "seconds": 2,
-                    "start_time": "2020-10-13 14:15:25"
-                },
-                {
-                    "days": 0,
-                    "end_time": "2020-10-13 14:15:42",
-                    "hours": 0,
-                    "minutes": 0,
-                    "seconds": 1,
-                    "start_time": "2020-10-13 14:15:41"
-                },
-                {
-                    "days": 0,
-                    "end_time": "2020-10-13 14:16:26",
-                    "hours": 0,
-                    "minutes": 0,
-                    "seconds": 4,
-                    "start_time": "2020-10-13 14:16:22"
-                }
-            ]
-        },
-        {
-            "name": "'Untitled 1 - LibreOffice Writer'",
-            "time_entries": [
-                {
-                    "days": 0,
-                    "end_time": "2020-10-13 14:15:41",
-                    "hours": 0,
-                    "minutes": 0,
-                    "seconds": 14,
-                    "start_time": "2020-10-13 14:15:27"
-                }
-            ]
-        },
-        {
-            "name": "'Save File'",
-            "time_entries": [
-                {
-                    "days": 0,
-                    "end_time": "2020-10-13 14:16:04",
-                    "hours": 0,
-                    "minutes": 0,
-                    "seconds": 4,
-                    "start_time": "2020-10-13 14:16:00"
-                }
-            ]
+            "Others": {}
         }
     ]
 }
