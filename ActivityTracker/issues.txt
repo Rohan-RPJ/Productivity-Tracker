@@ -1,0 +1,3 @@
+1. to remove '\u2022' from activities.json
+2. to remove web search from activities.json
+3. get url not working for chrome
