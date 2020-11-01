@@ -56,7 +56,7 @@ class WinAcitivyList:
         else:
             detail_list = full_detail.split(' - ')
             new_window_name = detail_list[-1]
-        if new_window_name == 'Mozilla Firefox' or new_window_name == 'Google Chrome':
+        if new_window_name == 'Mozilla Firefox' or new_window_name == 'Google Chrome' or new_window_name == 'Microsoft Edge':
             #print('Inside activity: ', new_window_name)
             activities_ = activity.serialize_browser()
         else:

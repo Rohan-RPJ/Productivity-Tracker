@@ -25,8 +25,12 @@ class WebsitePrediction:
     def get_website_prediction(self):
 
         title, description = self.webInfo.get_title_and_desc()
-        print("title:",title)
-        print("description:",description)
+        try:
+          print("title:",title)
+          print("description:",description)
+        except Exception as e:
+          print(e)
+
         input_text = self.webInfo.get_text()
         input_text = self.webInfo.clean_text(input_text)
         if input_text == None:
@@ -50,7 +54,7 @@ class WebsitePrediction:
           prediction1 = classes[max_value_index]
           print("Predction1:", prediction1)
 
-          predicted_values[max_value_index] = -1
+          predicted_values[max_value_index] = -100
           sec_max_val_index = predicted_values.index(max(predicted_values))
           prediction2 = classes[sec_max_val_index]
           print("Predction2:", prediction2)
