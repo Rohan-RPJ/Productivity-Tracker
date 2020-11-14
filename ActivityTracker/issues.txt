@@ -1,0 +1,4 @@
+1. to remove '\u2022' from activities.json
+2. to remove web and youtube search from activities.json
+3. get url not working for chrome
+4. only desc for youtube videos should be there
