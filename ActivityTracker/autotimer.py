@@ -46,7 +46,33 @@ def get_chrome_url():
         window = win32gui.GetForegroundWindow()
         chromeControl = auto.ControlFromHandle(window)
         edit = chromeControl.EditControl()
-        return 'https://' + edit.GetValuePattern().Value
+        strChrome = edit.GetValuePattern().Value
+        strChrome = 'http://'+strChrome
+        return strChrome
+    elif sys.platform in ['Mac', 'darwin', 'os2', 'os2emx']:
+        textOfMyScript = """tell app "google chrome " to get the url of the active tab of window 1"""
+        s = NSAppleScript.initWithSource_(
+            NSAppleScript.alloc(), textOfMyScript)
+        results, err = s.executeAndReturnError_(None)
+        return results.stringValue()
+    else:
+        print("sys.platform={platform} is not supported."
+              .format(platform=sys.platform))
+        print(sys.version)
+    return _active_window_name
+
+try:
+    format = get_json_format()
+    activeList.initialize_me(format)
+except Exception:
+    print('No json')
+
+def get_firefox_url():
+    if sys.platform in ['Windows', 'win32', 'cygwin']:
+        window = win32gui.GetForegroundWindow()
+        chromeControl = auto.ControlFromHandle(window)
+        edit = chromeControl.EditControl()
+        return edit.GetValuePattern().Value
     elif sys.platform in ['Mac', 'darwin', 'os2', 'os2emx']:
         textOfMyScript = """tell app "google chrome " to get the url of the active tab of window 1"""
         s = NSAppleScript.initWithSource_(
@@ -71,7 +97,17 @@ try:
         if sys.platform not in ['linux', 'linux2']:
             new_window_name = get_active_window()
             if 'Google Chrome' in new_window_name:
-                new_window_name = url_to_name(get_chrome_url())
+                url = url_to_name(get_chrome_url())
+                new_window_name = url+" - Google Chrome"
+                isBrowser = True
+            elif 'Mozilla Firefox' in new_window_name:
+                url = url_to_name(get_firefox_url())
+                new_window_name = url+" - Mozilla Firefox"
+                isBrowser = True
+            elif 'Microsoft Edge' in new_window_name:
+                url = url_to_name(get_firefox_url())
+                new_window_name = url+" - Microsoft Edge"
+                isBrowser = True
         if sys.platform in ['linux', 'linux2']:
             new_window_name = l.get_active_window_x()
             if 'Google Chrome' in new_window_name or 'Mozilla Firefox' in new_window_name:

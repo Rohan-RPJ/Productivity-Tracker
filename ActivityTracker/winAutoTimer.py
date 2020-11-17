@@ -23,6 +23,11 @@ start_time = datetime.datetime.now()
 activeList = WinAcitivyList([])
 first_time = True
 
+def isWebSearch(a_w):
+    if '/search' in a_w:
+        return '0'
+    else:
+        return a_w
 
 def url_to_name(url):
     print(url)
@@ -50,7 +55,9 @@ def get_chrome_url():
         window = win32gui.GetForegroundWindow()
         chromeControl = auto.ControlFromHandle(window)
         edit = chromeControl.EditControl()
-        return 'https://' + edit.GetValuePattern().Value
+        strChrome = edit.GetValuePattern().Value
+        strChrome = 'http://'+strChrome
+        return isWebSearch(strChrome)
     elif sys.platform in ['Mac', 'darwin', 'os2', 'os2emx']:
         textOfMyScript = """tell app "google chrome " to get the url of the active tab of window 1"""
         s = NSAppleScript.initWithSource_(
@@ -62,19 +69,18 @@ def get_chrome_url():
               .format(platform=sys.platform))
         print(sys.version)
     return _active_window_name
-
 try:
     format = get_json_format()
     activeList.initialize_me(format)
 except Exception:
     print('No json')
 
-def get_firefox_url():
+def get_web_url():
     if sys.platform in ['Windows', 'win32', 'cygwin']:
         window = win32gui.GetForegroundWindow()
         chromeControl = auto.ControlFromHandle(window)
         edit = chromeControl.EditControl()
-        return edit.GetValuePattern().Value
+        return isWebSearch(edit.GetValuePattern().Value)
     elif sys.platform in ['Mac', 'darwin', 'os2', 'os2emx']:
         textOfMyScript = """tell app "google chrome " to get the url of the active tab of window 1"""
         s = NSAppleScript.initWithSource_(
@@ -109,11 +115,11 @@ try:
                 new_window_name = url+" - Google Chrome"
                 isBrowser = True
             elif 'Mozilla Firefox' in new_window_name:
-                url = url_to_name(get_firefox_url())
+                url = url_to_name(get_web_url())
                 new_window_name = url+" - Mozilla Firefox"
                 isBrowser = True
             elif 'Microsoft Edge' in new_window_name:
-                url = url_to_name(get_firefox_url())
+                url = url_to_name(get_web_url())
                 new_window_name = url+" - Microsoft Edge"
                 isBrowser = True
         if sys.platform in ['linux', 'linux2']:
@@ -122,7 +128,7 @@ try:
                 new_window_name = l.get_chrome_url_x()
 
 
-        if active_window_name != new_window_name:
+        if active_window_name != new_window_name  and new_window_name.split(' - ')[0].strip() != '0':
             print(str(count)*25)
             print("Active window: ",active_window_name)
             print("New window: ",new_window_name)
@@ -198,7 +204,7 @@ try:
 
             count+=1
         time.sleep(1)
-    
+
 
 except KeyboardInterrupt:
     # with open('activities.json', 'w') as json_file:

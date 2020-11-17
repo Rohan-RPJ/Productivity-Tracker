@@ -1,0 +1,49 @@
+{
+    "activities": [
+        {
+            "software": {
+                "productive": {
+                    "Business": {},
+                    "Computers": {},
+                    "Health": {},
+                    "News": {},
+                    "Recreation": {},
+                    "Science": {},
+                    "Sports": {}
+                },
+                "unproductive": {
+                    "Arts": {},
+                    "Games": {},
+                    "Home": {},
+                    "Reference": {},
+                    "Shopping": {},
+                    "Society": {}
+                }
+            }
+        },
+        {
+            "website": {
+                "productive": {
+                    "Business": {},
+                    "Computers": {},
+                    "Health": {},
+                    "News": {},
+                    "Recreation": {},
+                    "Science": {},
+                    "Sports": {}
+                },
+                "unproductive": {
+                    "Arts": {},
+                    "Games": {},
+                    "Home": {},
+                    "Reference": {},
+                    "Shopping": {},
+                    "Society": {}
+                }
+            }
+        },
+        {
+            "Others": {}
+        }
+    ]
+}
