@@ -40,9 +40,10 @@ class WebsitePrediction:
         else:  
           # Compose a JSON Predict request (send title+desc of webpage).
           data = json.dumps({"instances" : [input_text]})
+          headers = {"content-type": "application/json"}
 
-          json_response = requests.post(SERVER_URL, data=data)
-
+          json_response = requests.post(SERVER_URL, data=data, headers=headers)
+          print("json_response:",json_response)
           # Extract text from JSON
           response_text = json.loads(json_response.text)
 
@@ -79,10 +80,11 @@ class SoftwarePrediction:
             return OTHERS_STR
         else:  
           # Compose a JSON Predict request (send title+desc of webpage).
-          data = json.dumps({"instances" : [self.text]})
+          data = json.dumps({"signature_name": "serving_default", "instances" : [self.text]})
+          headers = {"content-type": "application/json"}
 
-          json_response = requests.post(SERVER_URL, data=data)
-
+          json_response = requests.post(SERVER_URL, data=data, headers=headers)
+          print(json_response.text)
           # Extract text from JSON
           response_text = json.loads(json_response.text)
 
