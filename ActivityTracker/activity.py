@@ -48,23 +48,23 @@ class AcitivyList:
 
     def serialize(self):
         return {
-            'activities' : self.activities_to_json()
+            'activities' : self.activities_to_json(activity)
         }
 
-    def activities_to_json(self):
+    def activities_to_json(self, activity):
         activities_ = [{'SOFTWARE':{}},{'WEBSITE TRACKING':{'Mozilla Firefox':{},'Google Chrome':{}}}]
-        for activity in self.activities:
-            full_detail = activity.name
-            if full_detail == None:
-                continue
-            else:
-                detail_list = full_detail.split(' - ')
-                new_window_name = detail_list[-1]
-            if new_window_name == 'Mozilla Firefox\'' or new_window_name == 'Google Chrome\'':
-                #print('Inside activity: ', new_window_name)
-                activities_ = activity.serialize_browser(new_window_name)
-            else:
-                activities_ = activity.serialize()
+        full_detail = activity.name
+        if full_detail == None:
+            #continue
+            return []
+        else:
+            detail_list = full_detail.split(' - ')
+            new_window_name = detail_list[-1]
+        if new_window_name == 'Mozilla Firefox' or new_window_name == 'Google Chrome' or new_window_name == 'Microsoft Edge':
+            #print('Inside activity: ', new_window_name)
+            activities_ = activity.serialize_browser()
+        else:
+            activities_ = activity.serialize_software()
         return activities_
 
 
