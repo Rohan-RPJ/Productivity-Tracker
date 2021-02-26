@@ -1,0 +1,61 @@
+
+CURRENT PROCESS FLOW OF BACKEND:
+
+
+Steps:
+
+1. Start the execution-> Give input as 1 or 2 for "Cloud Prediction" or "Docker Prediction" respectively.
+
+2. Set the active window as None.
+
+3. Set the current window as new window.
+
+4. Check if the active window is equal to new window.
+
+5. If yes: Goto step 3(This will be a loop till the user remains on the same window)
+
+6. If no: Implies user switched to a different window. Now, get the information about the new window and store it in an activity object.
+
+7. An ActivityList is maintained each time a new & unique activity object is created, and then it is appended to the ActivityList.
+
+8. So check if the activity obtained in step 6 is unique or not by comparing it with all the activities stored in ActivityList.
+
+9. If the activity is new and unique, then make predictions for this activity and append this activity to the ActivityList.
+
+10. If the activity is already stored in ActivityList, it means user has already visited the website or software application. So just update the time_spent for that activity in the database.
+
+11. Goto step 3
+
+
+
+
+TIME ENTRY UPDATION METHOD(For step 10):
+
+1. FOR WEBSITE:
+	A. If user opens the same website again after particular time intervals, then calculate the time spent for that interval, add this time spent to the time_spent which is already stored in the activity object. And update the database with this final value of time spent.
+
+	B. If user opens two different websites having "SAME" hostname(eg: "github") "AND" category(i.e. their predicted values eg: two urls with hostname "github" may belong to "Computer" category for both websites), then make a list of url and title in db and calculate the total_mutual_time(i.e. total time spent by both websites individually) by adding time spent by both websites(the time spent on individual website is stored in the activity object), and then store it in the db.
+	eg:
+		github : {
+			url+title : [
+				u1+t1, u2+t2, ...
+			]
+			total_mutual_time : (total common time spent on all above websites)
+		}
+
+	C. If user opens two browsers and opens same website on both browsers "OR" if the websites are different and have "SAME" hostname "AND" category, then total_mutual_time spent should be calculated as done in part "A" and "B" of website respectively. The time spent should not be affected by opening websites in different browsers.
+
+
+2. FOR SOFTWARE:
+	Same as part "A" and "B" of website. Just replace hostname of website with app_name of software.
+
+
+
+
+# IMPORTANT POINTS:
+
+* The key for storing website is its hostname and for software is its app_name
+
+* The uniqueness of a website is defined as: hostname(eg: github)(without any www or .com) + title(of website) 
+
+* The uniqueness of a software is defined as: its app_name(without any exe eg: explorer)

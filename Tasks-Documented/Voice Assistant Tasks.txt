@@ -1,0 +1,67 @@
+Voice Assistant Feature Tasks:
+
+1. Speech Recognition: Speech to text
+
+2. Speech generation: Text to Speech
+
+3. Prepare a list of required questions that can be asked by the user
+{
+    Required Questions:
+
+    Questions to be asked to voice assistant (Jarvis):
+    !----------------&&---------------!
+    Variables:
+    VAN: Voice Assistant Name
+    APPN: App Name
+    T/S: TELL/SHOW
+    H/H: HEY/HELLO
+    !----------------&&---------------!
+
+    ‌(HH VAN) T/S me the time spent on (app) APPN?
+    ‌(H/H VAN) T/S me the time spent on each/every (app) application?
+    ‌(H/H VAN) T/S me on which app have I spent more time on?
+    ‌(Hey VAN) T/S me on which apps(show 2-3 apps) have I spent more time on?
+    ‌(Hey VAN) T/S me all the apps that I have used
+
+}
+
+4. To calculate similarity between two texts: To take the input speech from user,
+   convert it to text and match that given text(question) to the given list of questions and
+   answer that question.The text similarity calculation is done by using Cosine Similarity Algorithms.
+{
+	a. {
+			Link:https://towardsdatascience.com/calculating-string-similarity-in-python-276e18a7d33a
+			Use the above link to refer for calculating string similarity in python
+	}
+
+	b.{
+	    Create two separate files to store list of questions and answers
+	    Lastly use text to speech to convert that answer into speech and answer the user
+	    In required cases, also show the UI to the user simultaneously.
+	}
+}
+
+
+problems to be solved=>{
+
+	b. To perform 4.b
+	c. Questions contains variables like app_name which will be stored in run time in json file. Hence need to find a way 
+	   to extract the app name the user is speaking.
+	d. Answers too are stored which contains variables like time_spent, title, app_name. Hance need to find a way
+	   while answering such questions to the user.
+	e. To convert long links to short links using python
+		{
+			Links:{
+				1: https://www.geeksforgeeks.org/url-shorteners-and-its-api-in-python-set-1/
+				2: https://realpython.com/lessons/url-shortener/
+			}
+		}
+	f. Use voice of Jarvis used in Iron Man.
+}
+
+problems solved=>{
+	a. Speech to text 
+	b. Text to speech
+	c. To use hostname or website name(recommended) of website instead of link as a key in json and instead store the link inside hostname as a value.
+	d. To perform 4.a
+}
