@@ -42,13 +42,19 @@ class RetrieveData:
 	def __init__(self):  # firebase authenticated user fetched from frontend
 		""" Virtually private costructor """
 		self.uid = user.uid
-		self.sid = db.child("users").child(self.uid).child("sid").get().val()
-		self.wid =  db.child("users").child(self.uid).child("sid").get().val()
 
 		if RetrieveData.__instance != None:
 			raise Exception("RetrieveData is a Singleton Class!")
 		else:
 			RetrieveData.__instance = self
+
+
+	def __get_p_up_str(isProductive):
+
+		if isProductive:
+			return "p"
+		else:
+			return "up"
 
 
 	def get_total_tracking_time(self):
@@ -58,45 +64,30 @@ class RetrieveData:
 	############### Get Software Information - START ###############
 
 	def get_total_software_tracking_time(self):
-		return db.child("sa").child(self.sid).child("tstt").get().val()
+		return db.child("sa").child(self.uid).child("tstt").get().val()
 
 
 	def get_total_software_productive_time(self):
-		return db.child("sa").child(self.sid).child("p").child("tspt").get().val()
+		return db.child("sa").child(self.uid).child("p").child("tspt").get().val()
 
 
 	def get_total_software_unproductive_time(self):
-		return db.child("sa").child(self.sid).child("up").child("tsupt").get().val()
- 
+		return db.child("sa").child(self.uid).child("up").child("tsupt").get().val()
+ 	
 
-	def __get_productive_software_data_id(self):
-		return db.child("sa").child(self.sid).child("p").child("psdid").get().val()
+	def get_total_software_category_time(self, category, isProductive):
+
+		p_up_str = self.__get_p_up_str(isProductive)
+
+		return db.child("sa").child(self.uid).child(p_up_str).child(category).child("tct").get().val()
 
 
-	def __get_unproductive_software_data_id(self):
-		return db.child("sa").child(self.sid).child("up").child("upsdid").get().val()
+	def get_software_app_total_mutual_time(self, app_name, category, isProductive):
 		
-
-	def get_total_software_category_time(self, category):
-		p_up_sdid = None
-		if category in productive:
-			p_up_sdid = self.__get_productive_software_data_id()
-		else:
-			p_up_sdid = self.__get_unproductive_software_data_id()
-
-
-		return db.child("sd").child(p_up_sdid).child(category).child("tct").get().val()
-
-
-	def get_software_app_total_mutual_time(self, app_name, category):
-		p_up_sdid = None
-		if category in productive:
-			p_up_sdid = self.__get_productive_software_data_id()
-		else:
-			p_up_sdid = self.__get_unproductive_software_data_id()
-			
+		p_up_str = self.__get_p_up_str(isProductive)
+		
 		try:
-			val = db.child("sd").child(p_up_sdid).child(category).child(app_name).child("tmt").get().val()
+			val = db.child("sa").child(self.uid).child(p_up_str).child(category).child(app_name).child("tmt").get().val()
 		except Exception as e:
 			print("Error while retrieving software tmt: ", e)
 			val = None
@@ -104,17 +95,11 @@ class RetrieveData:
 		return val 
 
 
-	def get_software_app_data_from_cat(self, app_name, category):
-		# get the sw app data stored under given input category
+	def get_individual_software_tracking_time(self, app_name):
+		# get the sw app data stored under every possible category
 
-		p_up_sdid = None
-		if category in productive:
-			p_up_sdid = self.__get_productive_software_data_id()
-		else:
-			p_up_sdid = self.__get_unproductive_software_data_id()
-			
 		try:
-			val = db.child("sd").child(p_up_sdid).child(category).child(app_name).child("data").get().val()
+			val = db.child("istt").child(self.uid).child(app_name).get().val()
 		except Exception as e:
 			print("Error while retrieving software data: ", e)
 			val = None
@@ -122,22 +107,18 @@ class RetrieveData:
 		return val
 
 
-	# def get_software_app_data(self, app_name):
-	# 	# get the sw app data stored under every possible category
-		
-	# 	p_up_sdid = None
-	# 	if category in productive:
-	# 		p_up_sdid = self.__get_productive_software_data_id()
-	# 	else:
-	# 		p_up_sdid = self.__get_unproductive_software_data_id()
-			
-	# 	try:
-	# 		val = db.child("sd").child(p_up_sdid).child(category).child(app_name).child("data").get().val()
-	# 	except Exception as e:
-	# 		print("Error while retrieving software data: ", e)
-	# 		val = None
+	def get_software_app_data_from_cat(self, app_name, category):
+		# get the sw app data stored under given input category
 
-	# 	return val
+		p_up_str = self.__get_p_up_str(isProductive)
+		
+		try:
+			val = db.child("sa").child(self.uid).childp(p_up_str).child(category).child(app_name).child("data").get().val()
+		except Exception as e:
+			print("Error while retrieving software data: ", e)
+			val = None
+
+		return val
 
 
 	############### Get Software Information - END ###############
@@ -146,46 +127,32 @@ class RetrieveData:
 
 	############### Get Website Information - START ###############
 
+
 	def get_total_website_tracking_time(self):
-		return db.child("wa").child(self.wid).child("twtt").get().val()
+		return db.child("wa").child(self.uid).child("twtt").get().val()
 
 
 	def get_total_website_productive_time(self):
-		return db.child("wa").child(self.wid).child("p").child("twpt").get().val()
+		return db.child("wa").child(self.uid).child("p").child("twpt").get().val()
 
 
 	def get_total_website_unproductive_time(self):
-		return db.child("wa").child(self.wid).child("up").child("twupt").get().val()
- 
-
-	def __get_productive_website_data_id(self):
-		return db.child("wa").child(self.wid).child("p").child("pwdid").get().val()
-
-
-	def __get_unproductive_website_data_id(self):
-		return db.child("wa").child(self.wid).child("up").child("upwdid").get().val()
-		
+		return db.child("wa").child(self.uid).child("up").child("twupt").get().val()
+ 		
 
 	def get_total_website_category_time(self, category):
-		p_up_wdid = None
-		if category in productive:
-			p_up_wdid = self.__get_productive_website_data_id()
-		else:
-			p_up_wdid = self.__get_unproductive_website_data_id()
 
-
-		return db.child("wd").child(p_up_wdid).child(category).child("tct").get().val()
+		p_up_str = self.__get_p_up_str(isProductive)
+		
+		return db.child("wa").child(self.uid).child(p_up_str).child(category).child("tct").get().val()
 
 
 	def get_website_total_mutual_time(self, hostname, category):
-		p_up_wdid = None
-		if category in productive:
-			p_up_wdid = self.__get_productive_webiste_data_id()
-		else:
-			p_up_wdid = self.__get_unproductive_website_data_id()
+		
+		p_up_str = self.__get_p_up_str(isProductive)
 			
 		try:
-			val = db.child("wd").child(p_up_wdid).child(category).child(hostname).child("tmt").get().val()
+			val = db.child("wa").child(self.uid).child(p_up_str).child(category).child(hostname).child("tmt").get().val()
 		except Exception as e:
 			print("Error while retrieving website tmt: ", e)
 			val = None
@@ -193,20 +160,30 @@ class RetrieveData:
 		return val
 
 
+	def get_individual_website_tracking_time(self, hostname):
+		# get the sw app data stored under every possible category
+
+		try:
+			val = db.child("iwtt").child(self.uid).child(hostname).get().val()
+		except Exception as e:
+			print("Error while retrieving software data: ", e)
+			val = None
+
+		return val
+
+
 	def get_website_data(self, hostname, category):
-		p_up_wdid = None
-		if category in productive:
-			p_up_wdid = self.__get_productive_website_data_id()
-		else:
-			p_up_wdid = self.__get_unproductive_website_id()
+		
+		p_up_str = self.__get_p_up_str(isProductive)
 			
 		try:
-			val = db.child("wd").child(p_up_wdid).child(category).child(hostname).child("url+title").get().val()
+			val = db.child("wa").child(self.uid).child(p_up_str).child(category).child(hostname).child("url+title").get().val()
 		except Exception as e:
 			print("Error while retrieving website data: ", e)
 			val = None
 
 		return val
+
 
 	############### Get Website Information - END ###############
 

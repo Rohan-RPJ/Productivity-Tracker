@@ -142,7 +142,7 @@ class Windows: # About the windows or applications or websites user opens
                 self.webInfo = WebsiteInfo(self.url)
                 self.title, _ = self.webInfo.get_title_and_desc()  # returns title and description
                 if self.title is not None:
-                    self.title.strip()
+                    self.title = self.title.strip()
                 self.new_window_name = self.url + app_name
 
         elif sys.platform in PF[1]:
@@ -290,7 +290,7 @@ class AutoTimer(Windows):
                         self.activityExists = False
 
                     print("Activity:",self.activity)
-
+                    
                     if not self.activityExists:
                         print("\nActivity does not exists in db: ", self.new_window_name)
                         
@@ -303,11 +303,11 @@ class AutoTimer(Windows):
                         if self.isBrowser:
                             self.new_activity = WinActivity(self.hostname, self.time_entry.serialize(), self.prediction_results)
                             self.new_activity.initWebsite(self.new_window_name, self.title)
-                            self.activityList.web_activities += (self.new_activity, )
+                            self.activityList.web_activities += (self.new_activity,)
                         else:
                             self.new_activity = WinActivity(self.new_window_name, self.time_entry.serialize(), self.prediction_results)
                             self.new_activity.initSoftware(self.new_window_name)
-                            self.activityList.sw_activities += (self.new_activity, )
+                            self.activityList.sw_activities += (self.new_activity,)
                     else:
                         print("\nActivity already exists in db: ", self.activity.key)
                         self.new_activity = self.activity

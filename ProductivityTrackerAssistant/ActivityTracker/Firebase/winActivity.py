@@ -69,7 +69,7 @@ class WinAcitivyList:
         except Exception as e:
             print(e)
             try:
-                # os.remov1e(__filename)            
+                os.remove(__filename)            
                 pass
             except:
                 pass

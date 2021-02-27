@@ -29,7 +29,7 @@ class Backend:
     def __init__(self):
         self.activityList = fwa.WinAcitivyList()
 
-        # if the tracking process terminates, then call the __store_activity_list_in_pickle to store activityList object in .pkl fie
+        # if the tracking process terminates, then call the __store_data_to_file to store activityList object in a file
         for sig in (SIGABRT, SIGBREAK, SIGILL, SIGINT, SIGSEGV, SIGTERM):
             signal(sig, self.__store_data_to_file)
 
@@ -79,7 +79,7 @@ class Backend:
                 print("Firebase DB not cleared\n")
                 print("Trying to load activityList object from file...")
                 # load the activityList object from .pkl file
-                isLoadedSuccessfully = self.activityList.load_activity_list_from_pickle()
+                isLoadedSuccessfully = self.activityList.load_activity_list_from_file()
                 if not isLoadedSuccessfully:
                     print("Initializing activityList object...")
                     self.activityList = fwa.WinAcitivyList()
@@ -105,5 +105,5 @@ class Backend:
 
 
     def __store_data_to_file(self, sig, frame):
-        self.activityList.store_activity_list_in_pickle()
+        self.activityList.store_activity_list_in_file()
 

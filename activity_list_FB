@@ -1,5 +1,5 @@
-10
-47
+2
+14
 Computers
 False
 True
@@ -8,451 +8,123 @@ cmd
 cmd
 0-h 0-m 4-s
 None
-Society
-False
-False
-True
-sublime_text
-sublime_text
-0-h 1-m 56-s
-None
-Science
+Computers
 False
 True
 True
-SearchUI
-SearchUI
-0-h 0-m 1-s
-None
-Science
-False
-True
-True
-Translate page from Hindi?
-Translate page from Hindi?
-0-h 0-m 4-s
-None
-Business
-False
-True
-True
-explorer
-explorer
-0-h 0-m 15-s
-None
-Recreation
-False
-True
-True
-Photos
-Photos
+Gliffy Diagrams - DB-Design(Firebase)-1.gliffy
+Gliffy Diagrams - DB-Design(Firebase)-1.gliffy
 0-h 0-m 3-s
-None
-Computers
-False
-True
-True
-Docker Desktop
-Docker Desktop
-0-h 0-m 1-s
-None
-Games
-False
-False
-True
-Xbox
-Xbox
-0-h 0-m 1-s
-None
-Science
-False
-True
-True
-Calculator
-Calculator
-0-h 0-m 1-s
-None
-Arts
-False
-False
-True
-Groove Music
-Groove Music
-0-h 0-m 13-s
 None
 Computers
 True
 True
 True
 console-firebase-google
-https://console.firebase.google.com/project/productivitytrackerassistant/database/productivitytrackerassistant-default-rtdb/data?pli=1 - Mozilla Firefox
-0-h 0-m 1-s
+https://console.firebase.google.com/project/productivitytrackerassistant/database/productivitytrackerassistant-default-rtdb/data - Mozilla Firefox
+0-h 0-m 43-s
 Sign in – Google accounts
+Computers
+True
+True
+True
+firebase-google
+https://firebase.google.com/docs/database/admin/start - Mozilla Firefox
+0-h 0-m 14-s
+Introduction to the Admin Database API  |  Firebase Realtime Database
 Science
 True
 True
 True
 firebase-google
 https://firebase.google.com/docs/database/rest/structure-data?authuser=0 - Mozilla Firefox
-0-h 0-m 1-s
+0-h 0-m 10-s
 Structure Your Database  |  Firebase
 Computers
 True
 True
 True
-stackoverflow
-https://stackoverflow.com/questions/4529815/saving-an-object-data-persistence - Mozilla Firefox
-0-h 0-m 9-s
-python - Saving an Object (Data persistence) - Stack Overflow
-Computers
-True
-True
-True
-stackoverflow
-https://stackoverflow.com/questions/3277503/how-to-read-a-file-line-by-line-into-a-list - Mozilla Firefox
-0-h 0-m 4-s
-python - How to read a file line-by-line into a list? - Stack Overflow
-Computers
-True
-True
-True
-github
-https://github.com/thisbejim/Pyrebase#authentication - Mozilla Firefox
-0-h 0-m 10-s
-GitHub - thisbejim/Pyrebase: A simple python wrapper for the Firebase API.
-Computers
-True
-True
-True
-github
-https://github.com/Rohan-RPJ - Mozilla Firefox
-0-h 2-m 18-s
-Rohan-RPJ · GitHub
+firebase-google
+https://firebase.google.com/docs/database/extend-with-functions - Mozilla Firefox
+0-h 0-m 7-s
+Extend Realtime Database with Cloud Functions
 Science
 True
 True
 True
 algorithmia
 https://algorithmia.com/users/anoni - Mozilla Firefox
-0-h 0-m 6-s
+0-h 0-m 8-s
 anoni - Algorithmia
-Computers
-True
-True
-True
-github
-https://github.com - Microsoft Edge
-0-h 0-m 14-s
-GitHub: Where the world builds software · GitHub
 Sports
 True
 True
 True
 teams-algorithmia
 https://teams.algorithmia.com/signin - Mozilla Firefox
-0-h 0-m 5-s
+0-h 0-m 15-s
 Algorithmia Teams
 Computers
 True
 True
 True
-sitepoint
-https://www.sitepoint.com/delay-sleep-pause-wait/ - Mozilla Firefox
-0-h 0-m 4-s
-Delay, Sleep, Pause, & Wait in JavaScript - SitePoint
+github
+https://github.com/thisbejim/Pyrebase#authentication - Mozilla Firefox
+0-h 0-m 2-s
+GitHub - thisbejim/Pyrebase: A simple python wrapper for the Firebase API.
+Computers
+True
+True
+True
+github
+https://github.com/Rohan-RPJ/Productivity-Tracker/ - Mozilla Firefox
+0-h 0-m 3-s
+GitHub - Rohan-RPJ/Productivity-Tracker
 Arts
 True
 False
 True
 mybigguide
 https://www.mybigguide.com/2017/03/Best-Websites-to-Learn-Something-New-Hindi.html - Mozilla Firefox
-0-h 0-m 3-s
+0-h 0-m 11-s
 बेस्ट वेबसाइट सभी के लिये - Best Website For All | MyBigGuide - माय बिग गाइड
-Computers
+Arts
 True
+False
 True
-True
-github
-https://github.com/Rohan-RPJ/Productivity-Tracker - Mozilla Firefox
-0-h 0-m 2-s
-GitHub - Rohan-RPJ/Productivity-Tracker
+mybigguide
+https://www.mybigguide.com/2017/03/Best-Websites-to-Learn-Something-New-Hindi.html - Mozilla Firefox
+0-h 0-m 30-s
+बेस्ट वेबसाइट सभी के लिये - Best Website For All | MyBigGuide - माय बिग गाइड
 Arts
 True
 False
 True
 youtube
 https://youtube.com/ - Mozilla Firefox
-0-h 0-m 10-s
+0-h 0-m 16-s
 YouTube
-Computers
-True
-True
-True
-youtube
-https://www.youtube.com/watch?v=Yt-15MkATa0 - Mozilla Firefox
-0-h 0-m 33-s
-Coronavirus India Update: कोरोनावायरस के नए केस 16,577, Maharashtra की हालत गंभीर, Vaccination जारी - YouTube
-Science
-True
-True
-True
-youtube
-https://www.youtube.com/watch?v=sOJhGhVpzO8 - Mozilla Firefox
-0-h 0-m 25-s
-India में बीते 24 घंटों में COVID-19 के 13,255 New Cases सामने आए, 78 लोगों की हुई मौत | Maharashtra - YouTube
 Recreation
 True
 True
 True
 youtube
 https://www.youtube.com/watch?v=A9GyVeV1Yu8 - Mozilla Firefox
-0-h 0-m 28-s
+0-h 0-m 12-s
 Friends: Funniest Moments of Season 3 (Mashup) | TBS - YouTube
-Society
-True
-False
-True
-youtube
-https://www.youtube.com/watch?v=ggZkZK-9Pm4 - Mozilla Firefox
-0-h 0-m 16-s
-Friends: Best Moments of Season 1 to Binge at Home | TBS - YouTube
-Others
-True
-False
-True
-youtube news
-https://youtube news - Mozilla Firefox
-0-h 0-m 32-s
-None
-Arts
-True
-False
-True
-youtube
-https://www.youtube.com/watch?v=rmI1PcGFCpI - Mozilla Firefox
-0-h 0-m 21-s
-Why did Market fall today? |  CA Rachana Ranade - YouTube
-Reference
-True
-False
-True
-youtube
-https://www.youtube.com/watch?v=39k7n0UZBHs - Mozilla Firefox
-0-h 0-m 17-s
-Is MBA worth it? Why MBA? | Ankur Warikoo Hindi Video | Should you go for an MBA in 2021? - YouTube
-Others
-True
-False
-True
-youtube
-https://www.youtube.com/results?search_query=india+news - Mozilla Firefox
-0-h 0-m 19-s
-None
-News
-True
-True
-True
-youtube
-https://www.youtube.com/watch?v=canuBmfl7lE - Mozilla Firefox
-0-h 0-m 26-s
-News Today LIVE with Rajdeep Sardesai | India Today Live TV - YouTube
-News
-True
-True
-True
-youtube
-https://www.youtube.com/watch?v=wqDI1GmTgJo - Mozilla Firefox
-0-h 0-m 16-s
-IndiaTV News LIVE: Bharat Bandh  | COVID-19 Crisis | Bengal Polls 2021 | Breaking News 24X7 LIVE - YouTube
-Others
-True
-False
-True
-youtube
-https://www.youtube.com/results?search_query=india+news - Mozilla Firefox
-0-h 0-m 7-s
-None
-Society
-True
-False
-True
-youtube
-https://www.youtube.com/watch?v=tNIKLZSkzE4 - Mozilla Firefox
-0-h 0-m 10-s
-US, UN Welcome India, Pakistan Decision To Ceasefire Along LoC | Breaking News - YouTube
-Science
-True
-True
-True
-youtube
-https://www.youtube.com/watch?v=kSi_hp2FP5U - Mozilla Firefox
-0-h 0-m 20-s
-DNA Live | Sudhir Chaudhary के साथ देखिए DNA | DNA Full Episode | Latest Hindi News Today | Zee News - YouTube
-Society
-True
-False
-True
-youtube
-https://www.youtube.com/watch?v=l6SBpxBQ1dQ - Mozilla Firefox
-0-h 0-m 53-s
-'Use of electric vehicle should be made mandatory for govt officials': Gadkari - YouTube
-Computers
-True
-True
-True
-play-google
-https://play.google.com/store/apps/category/GAME?hl=en&gl=US - Mozilla Firefox
-0-h 0-m 32-s
-Games - Android Apps on Google Play
 Games
 True
 False
 True
-play-google
-https://play.google.com/store/apps/details?id=com.ua.building.Lokicraft&hl=en&gl=US - Mozilla Firefox
-0-h 0-m 32-s
-LokiCraft - Apps on Google Play
-Games
-True
-False
-True
-play-google
-https://play.google.com/store/apps/details?id=com.kiloo.subwaysurf&hl=en&gl=US - Mozilla Firefox
-0-h 0-m 39-s
-Subway Surfers - Apps on Google Play
-Society
-True
-False
-True
-en-wikipedia
-https://en.wikipedia.org/wiki/Secrets_of_Life - Mozilla Firefox
-0-h 0-m 14-s
-Secrets of Life - Wikipedia
-Arts
-True
-False
-True
 youtube
-https://www.youtube.com/watch?v=EolECc7IEMs - Mozilla Firefox
-0-h 0-m 10-s
-Sadhguru Reveals SECRETS TO LIFE AND HAPPINESS (an eye opening video) - YouTube
-Arts
-True
-False
-True
-youtube
-https://www.youtube.com/watch?v=8KkKuTCFvzI - Mozilla Firefox
-0-h 0-m 20-s
-What makes a good life? Lessons from the longest study on happiness | Robert Waldinger - YouTube
-Arts
-True
-False
-True
-youtube
-https://www.youtube.com/watch?v=LnJwH_PZXnM - Mozilla Firefox
-0-h 0-m 4-s
-How not to take things personally? | Frederik Imbo | TEDxMechelen - YouTube
-Others
-True
-False
-True
-olym
-https://olym - Mozilla Firefox
-0-h 0-m 3-s
-None
-Others
-True
-False
-True
-cricket
-https://cricket - Mozilla Firefox
-0-h 0-m 36-s
-None
-Sports
-True
-True
-True
-youtube
-https://www.youtube.com/watch?v=dUzjUt497O4 - Mozilla Firefox
-0-h 0-m 23-s
-live - india vs england 3rd test match, live cricket match today ind vs eng score, highlights day 2 - YouTube
-Sports
-True
-True
-True
-youtube
-https://www.youtube.com/watch?v=8b0ubLO2MUE - Mozilla Firefox
-0-h 0-m 8-s
-Yuvraj Singh slams six sixes off Stuart Broad | ENG v IND | T20 World Cup 2007 - YouTube
-Computers
-True
-True
-True
-youtube
-https://www.youtube.com/watch?v=zxcqGr6OcR0 - Mozilla Firefox
-0-h 0-m 6-s
-Bhide Tries To Give Sakharam A Bath | Taarak Mehta Ka Ooltah Chashmah | तारक मेहता का उल्टा चश्मा - YouTube
-Others
-True
-False
-True
-youtube
-https://www.youtube.com/results?search_query=healthy+food - Mozilla Firefox
-0-h 0-m 10-s
-None
-Home
-True
-False
-True
-youtube
-https://www.youtube.com/watch?v=pexOIlhT0v0 - Mozilla Firefox
-0-h 0-m 28-s
-How to Make Healthy Food Changes - YouTube
-Home
-True
-False
-True
-youtube
-https://www.youtube.com/watch?v=TKEgCMyU65Q - Mozilla Firefox
-0-h 0-m 9-s
-Protein Salad | рдкреНрд░реЛрдЯреАрди рд╕рд▓рд╛рдж | Sanjeev Kapoor Khazana - YouTube
+https://www.youtube.com/watch?v=bcZ9_kClq6I - Mozilla Firefox
+0-h 0-m 33-s
+10 Interesting & Useful Ayurvedic Facts About Your Body That You Should Know - YouTube
 Shopping
 True
 False
 True
 youtube
-https://www.youtube.com/watch?v=Gmh_xMMJ2Pw - Mozilla Firefox
-0-h 0-m 27-s
-How to Create a Healthy Plate - YouTube
-Others
-True
-False
-True
-youtube
-https://www.youtube.com/results?search_query=doctor - Mozilla Firefox
-0-h 0-m 17-s
-None
-Arts
-True
-False
-True
-youtube
-https://www.youtube.com/watch?v=tRgdAvFccIo - Mozilla Firefox
-0-h 0-m 17-s
-Doctor - So Baby Music Video | Sivakarthikeyan | Anirudh Ravichander | Nelson Dilipkumar - YouTube
-Others
-True
-False
-True
-youtube
-https://www.youtube.com/results?search_query=doctor - Mozilla Firefox
-0-h 0-m 10-s
-None
-Computers
-True
-True
-False
-youtube
-https://www.youtube.com/watch?v=ll4D3hV_Xxo - Mozilla Firefox
-0-h 0-m 17-s
-Doctor Treats Severely Curved Spine - YouTube
+https://www.youtube.com/watch?v=SRX5qJTVZMY - Mozilla Firefox
+0-h 0-m 18-s
+10 Most Underrated Ayurvedic Habits for a Healthy Lifestyle (Easy & Effective) - YouTube
