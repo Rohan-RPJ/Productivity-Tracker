@@ -1,0 +1,34 @@
+D:/BE-Project/models/Website/SavedModel/model
+
+https://medium.com/tensorflow/serving-ml-quickly-with-tensorflow-serving-and-docker-7df7094aa008
+https://www.tensorflow.org/tfx/serving/docker
+
+
+docker cp D:/BE-Project/SavedModels/Website/models/model serving_base:/models/model
+Linux: docker cp /home/shubham/BEproject/SavedModels/models/model serving_base:/models/model
+
+
+docker commit --change "ENV MODEL_NAME model" serving_base web_classify_container
+
+docker run -p 8501:8501 --name web_classify --mount type=bind,source=D:/BE-Project/SavedModels/Website/models/model,target=/models/model -e MODEL_NAME=model -t tensorflow/serving &
+
+Linux: 
+docker run -p 8501:8501 --name web_classify \
+--mount type=bind,source=/home/shubham/BEproject/SavedModels/models/model,target=/models/model \
+-e MODEL_NAME=model -t tensorflow/serving &
+
+
+curl -d '{"instances": ["Games"]}' -X POST http://localhost:8501/v1/models/model:predict
+
+
+{
+https://medium.com/@deepakshakya/beginners-guide-to-use-docker-build-run-push-and-pull-4a132c094d75:
+docker tag d36a7975865d anonyio/web-classify:latest
+
+docker push anonyio/web-classify
+}
+
+docker run -p 8501:8501 --name web_classify --mount type=bind,source=D:/BE-Project/SavedModels/Website/models/model,target=/models/model -e MODEL_NAME=model -t tensorflow/serving &
+
+Linux:
+docker run -p 8501:8501 --name web_classify --mount type=bind,source=/home/shubham/BEproject/SavedModels/models/model,target=/models/model -e MODEL_NAME=model -t web_classify_container &

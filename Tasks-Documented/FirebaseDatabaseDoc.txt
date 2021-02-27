@@ -1,0 +1,60 @@
+CREATING DATABASE USING FIREBASE REALTIME DATABASE
+
+- IMPLEMENTATION PATH:
+
+1. Integrate the Firebase Realtime Database SDKs : Quickly include clients via Gradle, CocoaPods, or a script include.
+
+2. Create Realtime Database References :  Reference your JSON data, such as "users/user:1234/phone_number" to set data or subscribe to data changes. 
+
+3. Set Data and Listen for Changes: Use these references to write data or subscribe to changes.
+
+4. Enable Offline Persistence :  Allow data to be written to the device's local disk so it can be available while offline. 
+
+5. Secure your data : Use Firebase Realtime Database Security Rules to secure your data.
+
+
+- BEST PRACTICES FOR DATA STRUCTURE:
+Link: "https://firebase.google.com/docs/database/rest/structure-data?authuser=0#fanout"
+
+1. Avoid nesting data: Because the Firebase Realtime Database allows nesting data up to 32 levels deep, you might be tempted to think that this should be the default structure. However, when you fetch data at a location in your database, you also retrieve all of its child nodes. In addition, when you grant someone read or write access at a node in your database, you also grant them access to all data under that node. Therefore, in practice, it's best to keep your data structure as flat as possible.
+
+2. Flatten data structures: If the data is instead split into separate paths, also called denormalization, it can be efficiently downloaded in separate calls, as it is needed.
+
+3. Create data that scales.
+
+
+* IMPORTANT:
+
+- Learn about how to secure your files using Firebase Realtime Database Rules : "https://firebase.google.com/docs/database/security?authuser=0"
+
+- You can provide your own keys, such as user IDs or semantic names, or they can be provided for you using the POST request.
+
+- If you create your own keys, they must be UTF-8 encoded, can be a maximum of 768 bytes, and cannot contain ., $, #, [, ], /, or ASCII control characters 0-31 or 127. You cannot use ASCII control characters in the values themselves, either. 
+
+
+
+- HOW DATA STORAGE AND LOADING IN APPLICATION WILL WORK:
+
+1. User starts the tracking by clicking on start tracking or a similar button
+
+=> Two Cases:
+	I. If user starts tracking on same day (if user had stopped tracking before on the same day).
+	II. If user starts tracking another day.
+
+	CASE-I > What can be done ? 
+
+		i. If user stops tracking, it means the python script has to terminate. Now if user starts tracking again on the same day and opens same software or website which he had opened before during tracking, then the predictions for those websites and softwares has to be made again since stopping the tracking process leads to termination of python script and the activity_list object gets destroyed. 
+
+		ii. Since we are dependent on this activity_list object to check whether ml model has made predictions for software or website, we need to do it again in case I which can be overcomed by storing the activity_list object in a .pkl(pickle format) file which can be loaded again when user starts tracking.
+
+	CASE-II > What can be done ?
+
+		i. The data in firebase gets re-initialized every day user starts tracking application and starts tracking in it, hence if the user wants to get the tracking information for the previous day, he can download it from the application which in turn will be downloaded from the firebase(which can be stored as a backup for user before re-initialization).
+		
+		ii. The db has to be re-initialized since storing tracking information of previous day and combining it with current tracking information is useless.
+
+		iii. Re-initialization of data is simply deleting the data from firebase every day and nodes get created again with initial values after user starts the tracking process.
+
+		iv. Hence in this case, instead of loading activity_list object from .pkl file, it is better to make a new activity_list object.
+
+=> Hence, to achieve the above 2 cases, the isDBCleared variable can be checked in firebase before initializing or loading the activity_list object.
