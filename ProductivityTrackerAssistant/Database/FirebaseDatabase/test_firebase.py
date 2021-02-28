@@ -1,5 +1,5 @@
 from . import db
 
 
-all_ids = db.child("wd").shallow().get()
-print(all_ids.val())
+all_ids = db.child("istt").child(123).get().val()
+print(list(all_ids.values()))

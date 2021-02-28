@@ -1,7 +1,5 @@
 import speech_recognition as sr
 
-from string_matching import QuestionMatching
-
 
 class VoiceRecognizer:
     """docstring for VoiceRecognizer"""
@@ -20,22 +18,30 @@ class VoiceRecognizer:
 
     def start_recognizer(self):
         print("Listening in background")
-        while True:
-            keyword_in_audio = self.recognize_keyword()
-            if keyword_in_audio:
-                return 1
-                
+
+        try:
+            while True:
+                keyword_in_audio = self.recognize_keyword()
+                if keyword_in_audio:
+                    return 1
+        except Exception as e:
+            print(e)    
+
 
     def recognize_keyword(self):
-        
-        self.speech_as_text = self.recognize_voice()
+            
+        try:
+            self.speech_as_text = self.recognize_voice()
+        except Exception as e:
+            print(e)
+            return False
 
         print(self.speech_as_text)
 
         # Look for your "Ok Google" keyword in speech_as_text
         if type(self.speech_as_text) == int:
             return False
-        if self.speech_as_text and ("Google" in self.speech_as_text or "hey Google" in self.speech_as_text):
+        if self.speech_as_text and ("Jarvis" in self.speech_as_text or "Hey Jarvis" in self.speech_as_text):
             print("Stop listening for keywords...\n")
             print("Starting your Voice Assistant...\n")
             return True
@@ -74,7 +80,7 @@ class VoiceRecognizer:
             with sr.Microphone() as source:
                 #audio=r.listen(self.source, timeout=3)
                 self.r.energy_threshold = 1500
-                print(self.r.energy_threshold)
+                # print(self.r.energy_threshold)
                 audio=self.r.listen(source)
                 print("Audio Captured")
         except Exception as e:
