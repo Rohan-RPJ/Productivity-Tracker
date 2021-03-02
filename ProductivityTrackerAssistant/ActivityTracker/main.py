@@ -3,9 +3,10 @@
 
 # Standard library imports
 from __future__ import print_function
+import os
 import sys, traceback
 from signal import *
-import os
+import time
 
 
 # Third party imports
@@ -14,9 +15,10 @@ import os
 # Local application imports
 from ..Database.JsonDatabase.jsonDB import JsonDB
 from ..Database.FirebaseDatabase.save_data import SaveData as FbSaveData
-from ..Database.FirebaseDatabase.retrieve_data import RetrieveData as FbRetrieveData
+from ..Database.FirebaseDatabase.retrieve_data import RetrieveUserData as FbRetrieveUserData
 from .Json import winActivity as jwa
 from .Json import winAutoTimer as jwat
+from ..print_colored_text import *
 from .Firebase import winActivity as fwa
 from .Firebase import winAutoTimer as fwat
 
@@ -66,39 +68,57 @@ class Backend:
     def __cloud_firebase_db(self):
         tb = None
         try:
-            retrieve_data = FbRetrieveData.getInstance()
-            isDBCleared = retrieve_data.get_isDBCleared_val()
+
+            print_text("{} {} {}".format("\n\n"+("*")*37, "LOADING AND INITIALIZING DATA", ("*")*36+"\n"), "yellow")
+
+            retrieve_user_data = FbRetrieveUserData.getInstance()
+            isDBCleared = retrieve_user_data.get_isDBCleared_val()
+
+            if isDBCleared == "f":
+                print_firebase_text("Database not cleared")
+            else:
+                print_firebase_text("Database is Cleared")
 
             # Initialize firebase db - START #
             save_data = FbSaveData.getInstance()
             op_text = save_data.initDB()  # initializes db in firebase if not already initialized and returns corresponding text.
-            print(op_text)
+            
+            print_firebase_text(op_text, color="green")
             # Initialize firebase db - END #
 
             if isDBCleared == 'f':
-                print("Firebase DB not cleared\n")
-                print("Trying to load activityList object from file...")
-                # load the activityList object from .pkl file
+                
+                # load the activityList object from local file
                 isLoadedSuccessfully = self.activityList.load_activity_list_from_file()
+                
                 if not isLoadedSuccessfully:
-                    print("Initializing activityList object...")
+
+                    print_info_text("Initializing activityList object...", "yellow")
+
                     self.activityList = fwa.WinAcitivyList()
-                    print("activityList object initialized successfully")
-                else:
-                    print("Loaded activityList object from file successfully")
+
+                    print_info_text("ActivityList object initialized successfully\n", "green")
+            
             else:
-                print("Firebase DB cleared")
+                
                 # initialize the activityList object
-                print("Initializing activityList object...")
+                print_info_text("Initializing activityList object...", "yellow")
+
                 self.activityList = fwa.WinAcitivyList()
-                print("activityList object initialized successfully")
+                
+                print_info_text("ActivityList object initialized successfully", "green")
+
+            print_text("{} {} {}".format("\n\n"+("*")*31, "DATA LOADED AND INITIALIZED SUCCESSFULLY", ("*")*31+"\n\n"), "green")
 
             autoTimer = fwat.AutoTimer(self.activityList)
             autoTimer.start_execution()
+
         except Exception as e:
-            print("Exception Caught:", e)
+
+            print_exception_text(e, "red")
+
             ex_type, ex, tb = sys.exc_info()
-            print("Exception traceback:")
+            print_exception_text("Exception traceback: ", "red", end="")
             traceback.print_tb(tb)
         finally:
             del tb
@@ -106,4 +126,3 @@ class Backend:
 
     def __store_data_to_file(self, sig, frame):
         self.activityList.store_activity_list_in_file()
-

@@ -1,2 +1,6 @@
+1. get uid from electron 
+2. Stop the backend after sometime to complete database execution
 2. get url not working for chrome
 3. only desc for youtube videos should be there
+ 
+colorful cmd

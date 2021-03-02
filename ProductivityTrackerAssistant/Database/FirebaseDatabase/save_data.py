@@ -14,7 +14,7 @@ from . import db
 
 # Local application imports
 from ...Constants.keys import *
-
+from ...print_colored_text import *
 
 
 initial_time = "0-h 0-m 0-s"
@@ -74,6 +74,8 @@ class SaveData:
 
 		if isDBCleared == "f":
 			return "Database already initialized"
+
+		print_firebase_text("Initializing Database...", color="yellow")
 
 		# Initialize data in database - START #
 

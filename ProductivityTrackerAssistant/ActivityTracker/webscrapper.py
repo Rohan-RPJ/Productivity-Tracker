@@ -13,10 +13,12 @@ import requests
 
 
 # Local application imports
-
+from ..print_colored_text import *
 
 
 class WebsiteInfo:
+
+	
 	def __init__(self,url):
 		self.url = url
 		self.title = None
@@ -25,15 +27,15 @@ class WebsiteInfo:
 
 
 	def __extract_html_code(self):
+
 		try:
 			headers = {'User-Agent' : 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.89 Safari/537.36'}
 			page = requests.get(self.url, headers=headers)        #to extract page from website
-			# print("Before:",self.url,"aAfter:",page.url)
 			html_code = page.content        #to extract html code from page
-			#print(html_code)
+			
 			return html_code
 		except Exception as e:
-			print("Exception occurred while extracting html code:",e)
+			print_exception_text("Exception occurred while extracting html code: {}".format(e))
 			return None
 
 	def __parse_html(self):
@@ -55,15 +57,14 @@ class WebsiteInfo:
 				# get title of website
 				self.title = soup_obj.find('title').string
 			except Exception as e:
-				print("Exception occurred while finding title:",e)
+				print_exception_text("Exception occurred while finding title: {}".format(e))
 
 			try:
 				# get description of website
 				meta_tag = soup_obj.find('meta', attrs={'name': 'description'})
-				#print("Meta_tag",meta_tag)
 				self.description = meta_tag['content']
 			except Exception as e:
-				print("Exception occurred while finding description:",e)
+				print_exception_text("Exception occurred while finding description: {}".format(e))
 
 
 	def get_title_and_desc(self):
@@ -84,7 +85,7 @@ class WebsiteInfo:
 
 
 	def clean_text(self, text):
-		#print(text)
+
 		if text != None and text.strip() != '' and '404' not in text:
 			return text
 		else:

@@ -15,6 +15,7 @@ from dateutil import parser
 
 # Local application imports
 from ...Constants.keys import *
+from ...print_colored_text import *
 
 
 
@@ -25,16 +26,15 @@ class WinAcitivyList:
 
 
     def store_activity_list_in_file(self):
-        print("Storing activity List in file")
 
-        # print("Software activities: ",self.sw_activities)
-        # print("Website activities: ",self.web_activities)
+        print_text("\n\n"+("**")*52+"\n", "magenta", highlight="on_white")
 
+        print_local_text("Storing activity List in file...", "yellow")
 
-        __filename = "activity_list_Json"
+        __filename = "ACTIVITY_LIST_JSON"
 
         if os.getenv("db_choice") == "1":
-            __filename = "activity_list_FB"
+            __filename = "ACTIVITY_LIST_FB"
 
         try:
             with open(__filename, 'wb') as output_file:
@@ -47,15 +47,13 @@ class WinAcitivyList:
                 output_file.write(bytes(str(tot_web_activities), encoding='utf-8'))
                 output_file.write(bytes('\n', encoding='utf-8'))
 
-                print("Length stored")
-
                 for sw_activity in self.sw_activities:
                     attr_vals = sw_activity.get_class_attributes_values()
                     for data in attr_vals:
                         output_file.write(bytes(str(data).strip(), encoding='utf-8'))
                         output_file.write(bytes('\n', encoding='utf-8'))
 
-                print("SW activities stored..")
+                print_info_text("Software activities stored successfully", "green")
 
                 for web_activity in self.web_activities:
                     attr_vals = web_activity.get_class_attributes_values()
@@ -63,11 +61,10 @@ class WinAcitivyList:
                         output_file.write(bytes(str(data).strip(), encoding='utf-8'))
                         output_file.write(bytes('\n', encoding='utf-8'))
 
-
-                print("WEB activities stored..")
+                print_info_text("Website activities stored successfully", "green")
 
         except Exception as e:
-            print(e)
+            print_exception_text("Exception occurred while storing activities locally: {}".format(e))
             try:
                 os.remove(__filename)            
                 pass
@@ -87,12 +84,14 @@ class WinAcitivyList:
 
     def load_activity_list_from_file(self):
 
+        print_local_text("Loading activities from file...", "yellow")
+
         isLoadedSuccessfully = False
 
-        __filename = "activity_list_Json"
+        __filename = "ACTIVITY_LIST_JSON"
 
         if os.getenv("db_choice") == "1":
-            __filename = "activity_list_FB"
+            __filename = "ACTIVITY_LIST_FB"
 
         try:
             with open(__filename, 'rb') as input_file:
@@ -119,10 +118,11 @@ class WinAcitivyList:
                 counter += 8
 
             isLoadedSuccessfully = True
-            print("Activity List loaded")
+
+            print_local_text("Activities loaded successfully", "green")
 
         except FileNotFoundError as e:
-            print("{} file not found".format(__filename))
+            print_local_text("{} file not found".format(__filename), "red")
         
         return isLoadedSuccessfully
 

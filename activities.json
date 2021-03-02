@@ -3,22 +3,8 @@
         {
             "software": {
                 "productive": {
-                    "Business": {
-                        "explorer": {
-                            "total_mutual_time": "0-h 0-m 2-s"
-                        }
-                    },
-                    "Computers": {
-                        "Docker Desktop": {
-                            "total_mutual_time": "0-h 0-m 2-s"
-                        },
-                        "Gliffy Diagrams - DB-Design(Firebase).gliffy": {
-                            "total_mutual_time": "0-h 0-m 3-s"
-                        },
-                        "cmd": {
-                            "total_mutual_time": "0-h 1-m 25-s"
-                        }
-                    },
+                    "Business": {},
+                    "Computers": {},
                     "Health": {},
                     "News": {},
                     "Recreation": {},
@@ -31,11 +17,7 @@
                     "Home": {},
                     "Reference": {},
                     "Shopping": {},
-                    "Society": {
-                        "sublime_text": {
-                            "total_mutual_time": "0-h 2-m 31-s"
-                        }
-                    }
+                    "Society": {}
                 }
             }
         },
@@ -43,39 +25,11 @@
             "website": {
                 "productive": {
                     "Business": {},
-                    "Computers": {
-                        "github": {
-                            "total_mutual_time": "0-h 0-m 5-s",
-                            "url+title": [
-                                "https://github.com/Rohan-RPJ/Productivity-Tracker-*-GitHub - Rohan-RPJ/Productivity-Tracker"
-                            ]
-                        },
-                        "napuzba": {
-                            "total_mutual_time": "0-h 0-m 12-s",
-                            "url+title": [
-                                "https://napuzba.com/a/relative-import-beyond-top-level-package/p4-*-Beyond top-level package - Solution 2",
-                                "https://napuzba.com/a/relative-import-beyond-top-level-package/p2-*-Beyond top-level package - How relative imports works in python",
-                                "https://napuzba.com/a/relative-import-beyond-top-level-package-*-ValueError: attempted relative import beyond top-level package"
-                            ]
-                        }
-                    },
+                    "Computers": {},
                     "Health": {},
                     "News": {},
                     "Recreation": {},
-                    "Science": {
-                        "chrome.google": {
-                            "total_mutual_time": "0-h 0-m 3-s",
-                            "url+title": [
-                                "https://chrome.google.com/webstore/detail/gliffy-diagrams/bhmicilclplefnflapjmnngmkkkkpfad/related?hl=en-*-Gliffy Diagrams - Chrome Web Store"
-                            ]
-                        },
-                        "napuzba": {
-                            "total_mutual_time": "0-h 0-m 14-s",
-                            "url+title": [
-                                "https://napuzba.com/a/relative-import-beyond-top-level-package/p3-*-Beyond top-level package - Solution 1"
-                            ]
-                        }
-                    },
+                    "Science": {},
                     "Sports": {}
                 },
                 "unproductive": {

@@ -26,27 +26,91 @@ unproductive=[c for i,c in UNPRODUCTIVE_STR.items()]
 class user:
 	uid = 123
 
-class RetrieveData:
-	"""Singleton RetrieveData class"""
+
+
+def get_max_time_indexes(time_list):
+		time_list = time_list.copy()
+
+		# convert str time('x-h y-m z-s') to int time(xyz). The ones with greatest value of xyz will be maximum
+		for i in range(len(time_list)):
+			time_list[i] = list(map(lambda s: s.split('-')[0], time_list[i].split()))  # OP=>['x', 'y', 'z']
+			time_list[i] = int(''.join(time_list[i]))  # OP=> xyz
+
+		max_time = time_list[0]
+		max_indexes = [0]
+
+		for i in range(1, len(time_list)):
+			if time_list[i] > max_time:
+				max_indexes = [i]
+				max_time = time_list[i]
+			elif time_list == max_time:
+				max_indexes.append(i)
+
+		return max_indexes
+
+
+
+class RetrieveUserData:
+	"""Singleton RetrieveUserData class"""
 
 	__instance = None
 
 	@staticmethod
 	def getInstance():
 		""" Static access method. """
-		if RetrieveData.__instance == None:
-			RetrieveData()
-		return RetrieveData.__instance
+		if RetrieveUserData.__instance == None:
+			RetrieveUserData()
+		return RetrieveUserData.__instance
 
 
 	def __init__(self):  # firebase authenticated user fetched from frontend
 		""" Virtually private costructor """
 		self.uid = user.uid
 
-		if RetrieveData.__instance != None:
-			raise Exception("RetrieveData is a Singleton Class!")
+		if RetrieveUserData.__instance != None:
+			raise Exception("RetrieveUserData is a Singleton Class!")
 		else:
-			RetrieveData.__instance = self
+			RetrieveUserData.__instance = self
+
+
+	def get_firstname(self):
+		return db.child("users").child(self.uid).child("fn").get().val()
+
+
+	def get_lastname(self):
+		return db.child("users").child(self.uid).child("ln").get().val()
+
+
+	def get_total_tracking_time(self):
+		return db.child("users").child(self.uid).child("ttt").get().val()
+
+
+	def get_isDBCleared_val(self):
+		return db.child("users").child(self.uid).child("isDBCleared").get().val()
+
+
+
+class RetrieveSoftwareData:
+	"""Singleton RetrieveSoftwareData class"""
+
+	__instance = None
+
+	@staticmethod
+	def getInstance():
+		""" Static access method. """
+		if RetrieveSoftwareData.__instance == None:
+			RetrieveSoftwareData()
+		return RetrieveSoftwareData.__instance
+
+
+	def __init__(self):  # firebase authenticated user fetched from frontend
+		""" Virtually private costructor """
+		self.uid = user.uid
+
+		if RetrieveSoftwareData.__instance != None:
+			raise Exception("RetrieveSoftwareData is a Singleton Class!")
+		else:
+			RetrieveSoftwareData.__instance = self
 
 
 	def __get_p_up_str(isProductive):
@@ -57,32 +121,34 @@ class RetrieveData:
 			return "up"
 
 
-	def get_total_tracking_time(self):
-		return db.child("users").child(self.uid).child("ttt").get().val()
+	def get_app_list(self):  # returns sw apps list
+
+		# shallow() returns all keys under given path(here istt/uid/)
+		dict_keys = db.child("istt").child(self.uid).shallow().get().val()
+
+		return list(dict_keys)
 
 
-	############### Get Software Information - START ###############
-
-	def get_total_software_tracking_time(self):
+	def get_total_tracking_time(self):  # returns total software tracking time
 		return db.child("sa").child(self.uid).child("tstt").get().val()
 
 
-	def get_total_software_productive_time(self):
+	def get_total_productive_time(self):  # returns total software productive time
 		return db.child("sa").child(self.uid).child("p").child("tspt").get().val()
 
 
-	def get_total_software_unproductive_time(self):
+	def get_total_unproductive_time(self):  # returns total software unproductive time
 		return db.child("sa").child(self.uid).child("up").child("tsupt").get().val()
  	
 
-	def get_total_software_category_time(self, category, isProductive):
+	def get_total_category_time(self, category, isProductive):  # returns software total category time
 
 		p_up_str = self.__get_p_up_str(isProductive)
 
 		return db.child("sa").child(self.uid).child(p_up_str).child(category).child("tct").get().val()
 
 
-	def get_software_app_total_mutual_time(self, app_name, category, isProductive):
+	def get_total_mutual_time_in_category(self, app_name, category, isProductive):  # software total mutual time in given category
 		
 		p_up_str = self.__get_p_up_str(isProductive)
 		
@@ -95,7 +161,7 @@ class RetrieveData:
 		return val 
 
 
-	def get_individual_software_tracking_time(self, app_name):
+	def get_individual_app_tracking_time(self, app_name):  # returns individual software app tracking time
 		# get the sw app data stored under every possible category
 
 		try:
@@ -107,8 +173,7 @@ class RetrieveData:
 		return val
 
 
-	def get_software_app_data_from_cat(self, app_name, category):
-		# get the sw app data stored under given input category
+	def get_app_data_from_cat(self, app_name, category):  # returns the sw app data stored under given input category
 
 		p_up_str = self.__get_p_up_str(isProductive)
 		
@@ -121,33 +186,82 @@ class RetrieveData:
 		return val
 
 
-	############### Get Software Information - END ###############
+	def get_mostly_used_apps(self):  # returns mostly used software app names(can be more then one if having same time spent)
+
+		apps_with_time = db.child("istt").child(self.uid).get().val()  # Oredered Dict
+		app_list, time_list = list(apps_with_time.keys()), list(apps_with_time.values())
+		
+		max_indexes = get_max_time_indexes(time_list)
+
+		max_time_spent = time_list[max_indexes[0]]
+		mostly_used_apps = []
+
+		for max_index in max_indexes:
+			mostly_used_apps.append(app_list[max_index])
+
+		return mostly_used_apps, max_time_spent
 
 
 
-	############### Get Website Information - START ###############
+class RetrieveWebsiteData:
+	"""Singleton RetrieveWebsiteData class"""
+
+	__instance = None
+
+	@staticmethod
+	def getInstance():
+		""" Static access method. """
+		if RetrieveWebsiteData.__instance == None:
+			RetrieveWebsiteData()
+		return RetrieveWebsiteData.__instance
 
 
-	def get_total_website_tracking_time(self):
+	def __init__(self):  # firebase authenticated user fetched from frontend
+		""" Virtually private costructor """
+		self.uid = user.uid
+
+		if RetrieveWebsiteData.__instance != None:
+			raise Exception("RetrieveWebsiteData is a Singleton Class!")
+		else:
+			RetrieveWebsiteData.__instance = self
+
+
+	def __get_p_up_str(isProductive):
+
+		if isProductive:
+			return "p"
+		else:
+			return "up"
+
+
+	def get_app_list(self):  # returns web apps list
+
+		# shallow() returns all keys under given path(here iwtt/uid/)
+		dict_keys = db.child("iwtt").child(self.uid).shallow().get().val()
+
+		return list(dict_keys)
+
+
+	def get_total_tracking_time(self):  # returns total website tracking time
 		return db.child("wa").child(self.uid).child("twtt").get().val()
 
 
-	def get_total_website_productive_time(self):
+	def get_total_productive_time(self):  # returns total website productive time
 		return db.child("wa").child(self.uid).child("p").child("twpt").get().val()
 
 
-	def get_total_website_unproductive_time(self):
+	def get_total_unproductive_time(self):  # returns total website unproductive time
 		return db.child("wa").child(self.uid).child("up").child("twupt").get().val()
  		
 
-	def get_total_website_category_time(self, category):
+	def get_total_category_time(self, category):  # returns website total category time
 
 		p_up_str = self.__get_p_up_str(isProductive)
 		
 		return db.child("wa").child(self.uid).child(p_up_str).child(category).child("tct").get().val()
 
 
-	def get_website_total_mutual_time(self, hostname, category):
+	def get_total_mutual_time_in_category(self, hostname, category, isProductive):  # returns website total mutual time in given category
 		
 		p_up_str = self.__get_p_up_str(isProductive)
 			
@@ -160,19 +274,19 @@ class RetrieveData:
 		return val
 
 
-	def get_individual_website_tracking_time(self, hostname):
+	def get_individual_app_tracking_time(self, hostname):  # ireturns ndividual website app tracking time
 		# get the sw app data stored under every possible category
 
 		try:
 			val = db.child("iwtt").child(self.uid).child(hostname).get().val()
 		except Exception as e:
-			print("Error while retrieving software data: ", e)
+			print("Error while retrieving website data: ", e)
 			val = None
 
 		return val
 
 
-	def get_website_data(self, hostname, category):
+	def get_data(self, hostname, category):  # returns web app data stored under given input category
 		
 		p_up_str = self.__get_p_up_str(isProductive)
 			
@@ -185,8 +299,16 @@ class RetrieveData:
 		return val
 
 
-	############### Get Website Information - END ###############
+	def get_mostly_used_apps(self):  # returns mostly used software app names(can be more then one if having same time spent)
 
+		apps_with_time = db.child("iwtt").child(self.uid).get().val()  # Oredered Dict
+		app_list, time_list = list(apps_with_time.keys()), list(apps_with_time.values())
+		
+		max_indexes = get_max_time_indexes(time_list)
 
-	def get_isDBCleared_val(self):
-		return db.child("users").child(self.uid).child("isDBCleared").get().val()
+		max_time_spent = time_list[max_indexes[0]]
+		mostly_used_apps = []
+		for max_index in max_indexes:
+			mostly_used_apps.append(app_list[max_index])
+
+		return mostly_used_apps, max_time_spent

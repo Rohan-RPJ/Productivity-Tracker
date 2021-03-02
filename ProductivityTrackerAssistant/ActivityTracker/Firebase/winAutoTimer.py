@@ -12,7 +12,7 @@ from urllib.parse import urlparse
 
 
 # Local application import
-from ...Constants.os_platforms import OS_PF as PF
+from ...Constants.os_platforms import OS_PF as PF  # imported here since PF is needed first 
 
 
 # Third party imports
@@ -31,8 +31,8 @@ import win32process  # to get foreground window thread process id
 
 # Local application imports
 from ...Database.FirebaseDatabase.save_data import SaveData
-from ...Database.FirebaseDatabase.retrieve_data import RetrieveData
 from ...ML.predictions import *
+from ...print_colored_text import *
 from ..webscrapper import *
 from .winActivity import *
 
@@ -41,8 +41,8 @@ from .winActivity import *
 appFrameHostText = "ApplicationFrameHost"
 
 saveToDb = SaveData.getInstance()
-retrieveFromDb = RetrieveData.getInstance()
 
+    
 
 class WebWindow:
 
@@ -54,24 +54,42 @@ class WebWindow:
 
 
     def get_web_url(self):
+
+        # print_text()
+
         if sys.platform in PF[0]:
+
             url = None
             window = win32gui.GetForegroundWindow()
             browserControl = auto.ControlFromHandle(window)
+
             try:
+
                 edit = browserControl.EditControl()
+
             except Exception as e:
-                print(e)
-                return url
-            try:
-                url = edit.GetValuePattern().Value
-            except Exception:
-                print("Exception while getting url")
+                print_exception_text("EditControl Exception in get_web_url: {}".format(e))
+
                 return None
+
+            try:
+
+                url = edit.GetValuePattern().Value
+
+            except Exception:
+
+                print_exception_text("Exception while getting url")
+
+                return None
+
             if "https://" not in url:
+
                 url = "https://" + url
-            print("URL: ", url)
+
+            # print_info_text("URL: {}".format(url))
+
             return self.is_web_search(url)
+
         elif sys.platform in PF[2]:
             textOfMyScript = """tell app "google chrome " to get the url of the active tab of window 1"""
             s = NSAppleScript.initWithSource_(
@@ -79,9 +97,9 @@ class WebWindow:
             results, err = s.executeAndReturnError_(None)
             return results.stringValue()
         else:
-            print("sys.platform={platform} is not supported."
+            print_text("sys.platform={platform} is not supported."
                   .format(platform=sys.platform))
-            print(sys.version)
+            print_text(sys.version)
         return None
 
 
@@ -110,15 +128,20 @@ class Windows: # About the windows or applications or websites user opens
 
 
     def set_new_window(self):
+
         if sys.platform in PF[0]:
+
             self.new_window_name = self.get_active_window()
             self.isBrowser = True
             self.url = None
             self.hostname = None
             app_name = self.new_window_name
+
             if app_name == None or app_name.strip() == '':
                 return
+
             app_name = self.new_window_name.split()[-1].lower()
+
             if 'chrome' in app_name:
                 app_name = " - Google Chrome"
             elif 'firefox' in app_name:
@@ -127,6 +150,7 @@ class Windows: # About the windows or applications or websites user opens
                 app_name = " - Microsoft Edge"
             else:
                 self.isBrowser = False
+
             if self.isBrowser:
                 self.url = self.webWindow.get_web_url()
 
@@ -156,23 +180,29 @@ class Windows: # About the windows or applications or websites user opens
 
 
     def get_active_window(self):
+
         _active_window_name = None
+
         if sys.platform in PF[0]:
+
             window = win32gui.GetForegroundWindow()
-            # print("Window text",win32gui.GetWindowText(window))
+            # print_text("Window text: {}".format(win32gui.GetWindowText(window)))
             tid, pid = win32process.GetWindowThreadProcessId(window)
 
             if tid == 0:
                 return None
 
             _active_window_name = psutil.Process(pid).name().split('.')[0]
-            # print(_active_window_name)
+            # print_text(_active_window_name)
+
             if _active_window_name in ['firefox', 'chrome', 'msedge']:
-                # print("Its browser--------\n")
+                # print_text("Its browser--------\n")
                 _active_window_name = win32gui.GetWindowText(window)
+
             else:
-                # print("Its software---------\n")
+                # print_text("Its software---------\n")
                 # for software: abc.exe + "***" + current window name(for classification)
+
                 if _active_window_name == appFrameHostText:
                     _active_window_name = win32gui.GetWindowText(window).split('-')[-1].strip() 
                     self.software_app_detail = _active_window_name
@@ -184,13 +214,15 @@ class Windows: # About the windows or applications or websites user opens
             _active_window_name = (NSWorkspace.sharedWorkspace()
                                    .activeApplication()['NSApplicationName'])
         else:
-            print("sys.platform={platform} is not supported."
+            print_text("sys.platform={platform} is not supported."
                   .format(platform=sys.platform))
-            print(sys.version)
+            print_text(sys.version)
+
         return _active_window_name
 
 
     def is_window(self):
+
         if self.new_window_name != None and self.new_window_name.strip() != '':
             return 1
         return 0
@@ -219,11 +251,11 @@ class AutoTimer(Windows):
         win_name = None
         x=''
         if self.isBrowser:
-            print("Hostname: ",self.hostname)
-            print("Title: ", self.title)
+            print_info_text("Hostname: {}".format(self.hostname))
+            print_info_text("Title: {}".format(self.title))
 
             if self.hostname == None:
-                print("Invalid Browser activity")
+                print_info_text("Invalid Browser activity")
                 return (None, -1)
 
             if self.title == None:
@@ -232,20 +264,20 @@ class AutoTimer(Windows):
                 x=self.title.strip()
 
             win_name = self.hostname + x
-            # print("Hostname+title: ", win_name)
+            # print_text("Hostname+title: ", win_name)
             for activity in self.activityList.web_activities:
-                # print("Matching with: ", str(activity.key)+str(activity.title))
+                # print_text("Matching with: ", str(activity.key)+str(activity.title))
                 if str(activity.key)+str(activity.title) == win_name:
                     return (activity, 1)
         else:
             win_name = self.new_window_name
 
             if win_name == None:
-                print("Invalid Software activity")
+                print_info_text("Invalid Software activity", "blue")
                 return (None, -1)
-            # print("Sowftware app name: ", win_name)
+            # print_text("Sowftware app name: ", win_name)
             for activity in self.activityList.sw_activities:
-                # print("Matching with: ", activity.key)
+                # print_text("Matching with: ", activity.key)
                 if activity.key == win_name:
                     return (activity, 1)
         
@@ -269,17 +301,43 @@ class AutoTimer(Windows):
 
 
     def start_execution(self):
-        print("{} EXECUTION STARTED {}".format("#"*50, "#"*50))
+
+        print_text("{} EXECUTION  STARTED {}".format("#"*42, "#"*42), "white", highlight="on_magenta")
+
         try:
+
+            count = 0  # for printing purpose only
+
             while True:
-                print("\n\n"+("**")*50)
+                if not count:
+                    print_text("\n\n"+("**")*52+"\n", "magenta", highlight="on_white")
 
                 self.set_new_window()
-                print("\nNew Window: ", self.new_window_name)
-                print("Active Window: ", self.active_window_name)
+
+
+                #  for printing purpose only
+                if self.active_window_name == self.new_window_name  and self.is_window():
+                    if not count:
+                        print_info_text("New Window: {}".format(self.new_window_name))
+                        print_info_text("Active Window: {}".format(self.active_window_name))
+                        print_info_text("New Window = Active Window")
+                        count += 1
+                    else:
+                        print_text("\r{}".format(count), end="")
+                        count += 1
+
+                else:
+                    if count:
+                        print_text("\n\n"+("**")*52+"\n", "magenta", highlight="on_white")
+                    count = 0
+
 
                 if self.active_window_name != self.new_window_name  and self.is_window():
-                    print("\n---New Window not equal to active window---")
+
+                    print_info_text("New Window: {}".format(self.new_window_name))
+                    print_info_text("Active Window: {}".format(self.active_window_name))
+                       
+                    print_info_text("New Window not equal to active window")
 
                     self.activityExists = True
                     self.activity, exitcode = self.get_activity()
@@ -289,14 +347,13 @@ class AutoTimer(Windows):
                     if self.activity == None:
                         self.activityExists = False
 
-                    print("Activity:",self.activity)
                     
                     if not self.activityExists:
-                        print("\nActivity does not exists in db: ", self.new_window_name)
+                        print_info_text("Activity does not exists in db: {}".format(self.new_window_name))
                         
                         self.set_time_entry(self.start_time, self.start_time)
 
-                        print("\nMaking predictions for activity: ", self.new_window_name)
+                        print_info_text("Making predictions for activity: {}".format(self.new_window_name))
                         self.set_prediction_results()
 
                         # append this non-existing activity in browser or software activity list resp.
@@ -309,7 +366,7 @@ class AutoTimer(Windows):
                             self.new_activity.initSoftware(self.new_window_name)
                             self.activityList.sw_activities += (self.new_activity,)
                     else:
-                        print("\nActivity already exists in db: ", self.activity.key)
+                        print_info_text("Activity already exists in db: {}".format(self.activity.key))
                         self.new_activity = self.activity
 
                     if not self.first_time:
