@@ -12,6 +12,7 @@ import requests
 
 # Local application imports
 from ..Constants.keys import *
+from ..print_colored_text import print_docker_text
 
 
 
@@ -42,7 +43,7 @@ class DockerPrediction:
         if DockerPrediction.__instance != None:
             raise Exception("DockerPrediction is a Singleton Class!!")
         else:
-            print("############## RUNNING DOCKER PREDICTIONS ##############")
+            # print("############## RUNNING DOCKER PREDICTIONS ##############")
             DockerPrediction.__instance = self
           
 
@@ -55,7 +56,7 @@ class DockerPrediction:
         try:
           json_response = requests.post(SERVER_URL, data=data, headers=headers)
         except requests.ConnectionError as e:
-          print("ConnectionError: Please run you model image in docker")
+          print_warning_text("ConnectionError: Please run you model image in docker")
           return OTHERS_STR
 
         # print("json_response:",json_response)
@@ -68,11 +69,11 @@ class DockerPrediction:
 
         max_value_index = predicted_values.index(max(predicted_values))
         prediction1 = classes[max_value_index]
-        print("Predction1:", prediction1)
+        print_docker_text("Predction1: {}".format(prediction1))
 
         predicted_values[max_value_index] = -100
         sec_max_val_index = predicted_values.index(max(predicted_values))
         prediction2 = classes[sec_max_val_index]
-        print("Predction2:", prediction2)
+        print_docker_text("Predction2: {}".format(prediction2))
 
         return prediction1
