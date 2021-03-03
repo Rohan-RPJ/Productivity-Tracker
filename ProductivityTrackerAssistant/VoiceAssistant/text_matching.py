@@ -5,6 +5,8 @@
 import string
 from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.feature_extraction.text import CountVectorizer
+import nltk
+nltk.download('stopwords')
 from nltk.corpus import stopwords
 stopwords = stopwords.words("english")
 # print(stopwords)
@@ -28,7 +30,7 @@ class CosineSimilarity:
 	def string_to_vector(self, text_list):
 		vectorizer = CountVectorizer().fit_transform(text_list)
 		self.vectors = vectorizer.toarray()
-		print(self.vectors)
+		# print(self.vectors)
 
 
 

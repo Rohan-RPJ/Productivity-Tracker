@@ -13,7 +13,7 @@ class StartVoiceAssistant:
 	def start(self):
 		try:
 			va = voice_assistant.VoiceAssistant()
-			va.start_voice_recognizer()
+			va.start_voice_assistant()
 		except Exception as e:
 			print(e)
 
