@@ -43,7 +43,7 @@ def get_max_time_indexes(time_list):
 			if time_list[i] > max_time:
 				max_indexes = [i]
 				max_time = time_list[i]
-			elif time_list == max_time:
+			elif time_list[i] == max_time:
 				max_indexes.append(i)
 
 		return max_indexes

@@ -59,7 +59,7 @@ class TextMatching(CosineSimilarity):
 		max_val = 0
 		for i in range(len(self.vectors)-1):
 			val = self.cosine_sim_vectors(self.vectors[i],self.vectors[-1])
-			print(val)
+			# print(val)
 			if val > max_val:
 				max_index = i
 				max_val = val

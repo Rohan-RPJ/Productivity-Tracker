@@ -102,7 +102,7 @@ class QueAns():
 				speak("You have not used any software application")
 
 			else:
-				print("Maximum used software app/'s is/are: {}".format(' '.join(mostly_used_web_apps)))
+				print("Maximum used web app/'s is/are: {}".format(' '.join(mostly_used_web_apps)))
 				print("And max time spent is: {}".format(max_time_spent))
 				speak("You have spent maximum time on {} and {}".format(' '.join(mostly_used_web_apps[-1:0:-1]), mostly_used_web_apps[0]))
 				speak("And maximum time spent is {}".format(max_time_spent))
