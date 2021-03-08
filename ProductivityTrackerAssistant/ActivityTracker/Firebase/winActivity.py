@@ -6,7 +6,6 @@ DOCSTRINGS
 from collections import defaultdict
 import datetime
 import os
-import sys
 
 
 # Third party imports
@@ -26,8 +25,6 @@ class WinAcitivyList:
 
 
     def store_activity_list_in_file(self):
-
-        print_text("\n\n"+("**")*52+"\n", "magenta", highlight="on_white")
 
         print_local_text("Storing activity List in file...", "yellow")
 
@@ -70,8 +67,6 @@ class WinAcitivyList:
                 pass
             except:
                 pass
-
-        sys.exit(0)
 
 
     def __bytes_list_to_str_list(self, bytes_list):

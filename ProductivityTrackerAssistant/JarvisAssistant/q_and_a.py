@@ -108,17 +108,13 @@ class QueAns():
 				speak("And maximum time spent is {}".format(max_time_spent))
 
 		elif que_ind in [11, 12, 13]:
-			tspt = retrieve_sw_data.get_total_productive_time()
-			twpt = retrieve_web_data.get_total_productive_time()
-			tpt = QueAns.add_time(tspt, twpt)
+			tpt = retrieve_user_data.get_total_productive_time()
 			tpt = QueAns.get_readable_time(tpt)
 			print("Total productive time spent: {}".format(tpt))
 			speak("{username}, you have spent {tpt} productively".format(username=username, tpt=tpt))
 
 		elif que_ind in [14, 15, 16]:
-			tsupt = retrieve_sw_data.get_total_unproductive_time()
-			twupt = retrieve_web_data.get_total_unproductive_time()
-			tupt = QueAns.add_time(tsupt, twupt)
+			tupt = retrieve_user_data.get_total_unproductive_time()
 			tupt = QueAns.get_readable_time(tupt)
 			print("Total unproductive time spent: {}".format(tupt))
 			speak("{username}, you have spent {tpt} unproductively".format(username=username, tpt=tupt))
@@ -127,20 +123,6 @@ class QueAns():
 			print("Show the electron app")
 			speak("Showing the elelctron app")
 				
-
-	@staticmethod
-	def add_time(t1, t2):  # time t1 and t2 will be in 'x-h x-m x-s' format
-		t1_h, t1_m, t1_s = [int(t.split('-')[0]) for t in t1.split()]
-		t2_h, t2_m, t2_s = [int(t.split('-')[0]) for t in t2.split()]
-		secs = (t1_s + t2_s)
-		mins = (t1_m + t2_m + secs//60)
-		hrs = (t1_h + t2_h + mins//60)
-		secs %= 60
-		mins %= 60
-		time_spent = str(hrs) + "-h " + str(mins) + "-m " + str(secs)+ "-s"
-
-		return time_spent
-
 
 	@staticmethod
 	def get_readable_time(time):  # time will be in 'x-h x-m x-s' format
