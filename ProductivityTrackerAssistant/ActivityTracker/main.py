@@ -33,8 +33,8 @@ class Backend:
 
         # if the tracking process terminates, then call the __store_data_to_file to store activityList object in a file
         for sig in (SIGABRT, SIGBREAK, SIGILL, SIGINT, SIGSEGV, SIGTERM):
-            signal(sig, self.__store_data_to_file)
-
+            signal(sig, self.__run_at_exit)
+            
 
     def main(self):
         
@@ -124,5 +124,30 @@ class Backend:
             del tb
 
 
-    def __store_data_to_file(self, sig, frame):
+    def __store_data_to_file(self):
+
         self.activityList.store_activity_list_in_file()
+
+
+    def __update_firebase_db(self):
+
+        save_data = FbSaveData.getInstance()
+        save_data.update_db_at_user_exit()
+
+
+    def __run_at_exit(self, sig, frame):
+
+        print_text("\n\n"+("**")*52+"\n", "magenta", highlight="on_white")
+
+        print_info_text("Running funtions before exiting...\n")
+
+        self.__store_data_to_file()
+
+        print_text()
+
+        self.__update_firebase_db()
+
+        print_text("\nExiting...", color="cyan")
+        
+        sys.exit()
+

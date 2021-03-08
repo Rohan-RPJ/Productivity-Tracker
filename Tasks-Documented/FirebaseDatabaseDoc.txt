@@ -58,3 +58,43 @@ Link: "https://firebase.google.com/docs/database/rest/structure-data?authuser=0#
 		iv. Hence in this case, instead of loading activity_list object from .pkl file, it is better to make a new activity_list object.
 
 => Hence, to achieve the above 2 cases, the isDBCleared variable can be checked in firebase before initializing or loading the activity_list object.
+
+
+
+- WHAT SHOULD HAPPEN IN FIREBASE DB WHEN USER STOPS TRACKING ?
+
+Suppose current day tracking times = cdtt, ind_day tracking times(for current day) = cidtt, all_days tracking times = adtt, oldest ind_day times = oidtt, then
+
+
+* store oldest_day_date at time after user registration
+
+
+IF USER STOPS TRACKING:
+
+1-Get all ind_day dates and remove all nodes which are older than last 7 days from current.
+  While removing nodes, simultaneously subtract times value from att and update att.
+
+2-if last_tracking_date == current_date:
+	1-in all_days{
+			
+		update att with cdtt-cidtt+adtt
+	}
+	2-in ind_day{
+		update cidtt with cdtt
+	}
+else:
+	if count(ind_day nodes) == 7:
+		1-in all_days{
+			update att with adtt-oidtt+cdtt
+		}
+		2-in ind_day{
+			remove oidtt and add cdtt
+		}
+		3-update oldest_day_date to oldest date which can be taken from ind_day node
+	else:
+		1-in all_days{
+			update adtt with adtt+cdtt
+		}
+		2-in ind_day{
+			add cdtt
+		}
