@@ -42,32 +42,57 @@ storageFilename = "activities.json"
 
 class WebWindow:
 
-    def is_web_search(self, a_w):
-        if '/search' in a_w:
-            return '0'
+    def is_web_search(self, url):
+        if '/search' in url:
+            return True
         else:
-            return a_w
+            return False
 
 
-    def get_web_url(self):
+    def is_valid_url(self, url):
+
+        if self.is_web_search(url):
+            return False
+
+        url = url.split("://")
+        if len(url) == 1:
+            return False  
+        else:
+            if url[1].strip() == "":
+                return False
+            return True
+
+
+    def get_web_url(self, browser_name):
         if sys.platform in PF[0]:
             url = None
             window = win32gui.GetForegroundWindow()
             browserControl = auto.ControlFromHandle(window)
             try:
-                edit = browserControl.EditControl()
+
+                if browser_name == "chrome":
+                    edit = browserControl.EditControl(Name="Address and search bar")
+                else:
+                    edit = browserControl.EditControl()
+
             except Exception as e:
-                print(e)
+                print("Exception while getting browser control {}".format(e))
                 return url
             try:
                 url = edit.GetValuePattern().Value
             except Exception:
                 print("Exception while getting url")
                 return None
+
             if "https://" not in url:
                 url = "https://" + url
             print("URL: ", url)
-            return self.is_web_search(url)
+
+            if self.is_valid_url(url):
+                return url
+            else:
+                return None
+
         elif sys.platform in PF[2]:
             textOfMyScript = """tell app "google chrome " to get the url of the active tab of window 1"""
             s = NSAppleScript.initWithSource_(
@@ -115,17 +140,21 @@ class Windows: # About the windows or applications or websites user opens
             if app_name == None or app_name.strip() == '':
                 return
             app_name = self.new_window_name.split()[-1].lower()
+            browser_name = None
             if 'chrome' in app_name:
                 app_name = " - Google Chrome"
+                browser_name = "chrome"
             elif 'firefox' in app_name:
                 app_name = " - Mozilla Firefox"
+                browser_name = "firefox"
             elif 'edge' in app_name:
                 app_name = " - Microsoft Edge"
+                browser_name = "edge"
             else:
                 self.isBrowser = False
             if self.isBrowser:
-                self.url = self.webWindow.get_web_url()
-
+                self.url = self.webWindow.get_web_url(browser_name)
+                print(self.url)
                 if self.url == None:
                     self.new_window_name = None
                     return
@@ -183,7 +212,7 @@ class Windows: # About the windows or applications or websites user opens
 
 
 class AutoTimer(Windows):
-    def __init__(self, jsondb, activityList, prediction_mode):
+    def __init__(self, jsondb, activityList):
         Windows.__init__(self, WebWindow())
 
         self.jsondb = jsondb
@@ -200,7 +229,6 @@ class AutoTimer(Windows):
         self.prediction_results = defaultdict()
         self.time_entry = None
         self.json_data = None
-        self.prediction_mode = prediction_mode
 
         
     def get_activity(self):
@@ -238,11 +266,11 @@ class AutoTimer(Windows):
 
     def set_prediction_results(self):
         if self.isBrowser:
-            self.webPrediction = WebsitePrediction(self.url, self.prediction_mode)
+            self.webPrediction = WebsitePrediction(self.url)
             self.prediction_results["category"] = self.webPrediction.get_website_prediction(self.webInfo)
             self.prediction_results["isProductive"] = self.webPrediction.is_productive(self.prediction_results["category"])
         else:
-            self.softwarePrediction = SoftwarePrediction(self.new_window_name, self.prediction_mode)
+            self.softwarePrediction = SoftwarePrediction(self.new_window_name)
             self.prediction_results["category"] = self.softwarePrediction.get_software_prediction()
             self.prediction_results["isProductive"] = self.softwarePrediction.is_productive(self.prediction_results["category"])
 

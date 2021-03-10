@@ -1,12 +1,20 @@
-7
-5
+4
+10
 Computers
 False
 True
 True
 cmd
 cmd
-0-h 0-m 7-s
+0-h 0-m 6-s
+None
+Business
+False
+True
+True
+explorer
+explorer
+0-h 0-m 47-s
 None
 Society
 False
@@ -20,79 +28,87 @@ Computers
 False
 True
 True
-Docker Desktop
-Docker Desktop
+ShellExperienceHost
+ShellExperienceHost
 0-h 0-m 1-s
-None
-Computers
-False
-True
-True
-Gliffy Diagrams - DB-Design(Firebase)-4.gliffy
-Gliffy Diagrams - DB-Design(Firebase)-4.gliffy
-0-h 0-m 1-s
-None
-Computers
-False
-True
-True
-notepad
-notepad
-0-h 0-m 3-s
-None
-Business
-False
-True
-True
-explorer
-explorer
-0-h 0-m 1-s
-None
-Games
-False
-False
-True
-Xbox
-Xbox
-0-h 0-m 9-s
 None
 Computers
 True
 True
 True
 console-firebase-google
-https://console.firebase.google.com/project/productivitytrackerassistant/database/productivitytrackerassistant-default-rtdb/data - Mozilla Firefox
-0-h 0-m 58-s
+https://console.firebase.google.com/u/0/project/productivitytrackerassistant/database/productivitytrackerassistant-default-rtdb/data - Mozilla Firefox
+0-h 0-m 16-s
 Sign in – Google accounts
+Science
+True
+True
+True
+algorithmia
+https://algorithmia.com/users/anoni - Mozilla Firefox
+0-h 0-m 1-s
+anoni - Algorithmia
 Computers
 True
 True
 True
-github
-https://github.com/thisbejim/Pyrebase#authentication - Mozilla Firefox
-0-h 0-m 6-s
-GitHub - thisbejim/Pyrebase: A simple python wrapper for the Firebase API.
+web-whatsapp
+https://web.whatsapp.com - Google Chrome
+0-h 0-m 18-s
+Error
 Computers
 True
 True
 True
-github
-https://github.com/ - Mozilla Firefox
-0-h 0-m 10-s
-GitHub: Where the world builds software · GitHub
-Computers
-True
-True
-True
-stackoverflow
-https://stackoverflow.com/questions/19747371/python-exit-commands-why-so-many-and-when-should-each-be-used - Mozilla Firefox
-0-h 0-m 8-s
-Python exit commands - why so many and when should each be used? - Stack Overflow
+drive-google
+https://drive.google.com/drive/folders/1h0xX8fOkQK7Uq6W-rBl_YdtQ1IGOE7-4 - Google Chrome
+0-h 0-m 49-s
+Output â€“ Google Drive
 Games
 True
 False
 True
 play-google
 https://play.google.com/store/apps/details?id=com.netmarble.bnsmws&hl=en_IN&gl=US - Mozilla Firefox
-0-h 0-m 9-s
+0-h 0-m 1-s
 Blade&Soul: Revolution – Apps on Google Play
+Sports
+True
+True
+False
+teams-algorithmia
+https://teams.algorithmia.com/algorithms/textclassifier - Mozilla Firefox
+0-h 0-m 6-s
+Algorithmia Teams
+Shopping
+True
+False
+False
+amazon
+https://amazon.in/?ie=UTF8&ext_vrnc=hi&tag=googhydrabk-21&ascsubtag=_k_EAIaIQobChMI2pX5seSl7wIVEg4rCh0DTgNyEAAYASAAEgKVs_D_BwE_k_&ext_vrnc=hi&gclid=EAIaIQobChMI2pX5seSl7wIVEg4rCh0DTgNyEAAYASAAEgKVs_D_BwE - Google Chrome
+0-h 0-m 31-s
+Online Shopping site in India: Shop Online for Mobiles, Books, Watches, Shoes and More - Amazon.in
+Computers
+True
+True
+True
+google
+https://google.com - Microsoft Edge
+0-h 0-m 3-s
+Google
+Others
+True
+False
+True
+hell
+https://hell - Microsoft Edge
+0-h 0-m 6-s
+None
+Computers
+True
+True
+True
+github
+https://github.com/Rohan-RPJ - Google Chrome
+0-h 0-m 5-s
+Rohan-RPJ · GitHub

@@ -6,6 +6,7 @@ DOCSTRINGS
 # Standard library imports
 from __future__ import print_function
 import json
+import sys
 
 # Third party imports
 import requests
@@ -57,7 +58,7 @@ class DockerPrediction:
           json_response = requests.post(SERVER_URL, data=data, headers=headers)
         except requests.ConnectionError as e:
           print_warning_text("ConnectionError: Please run you model image in docker")
-          return OTHERS_STR
+          sys.exit()
 
         # print("json_response:",json_response)
         # Extract text from JSON
