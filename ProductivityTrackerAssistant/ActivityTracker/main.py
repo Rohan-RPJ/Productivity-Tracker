@@ -126,28 +126,47 @@ class Backend:
 
     def __store_data_to_file(self):
 
-        self.activityList.store_activity_list_in_file()
+        try:
+
+            self.activityList.store_activity_list_in_file()
+
+        except Exception as e:
+
+            print_exception_text(e)
 
 
     def __update_firebase_db(self):
 
-        save_data = FbSaveData.getInstance()
-        save_data.update_db_at_user_exit()
+        try:
+
+            save_data = FbSaveData.getInstance()
+            save_data.update_db_at_user_exit()
+
+        except Exception as e:
+
+            print_exception_text(e)
 
 
     def __run_at_exit(self, sig, frame):
 
-        print_text("\n\n"+("**")*52+"\n", "magenta", highlight="on_white")
+        if os.getenv("db_choice") == "1":
 
-        print_info_text("Running funtions before exiting...\n")
+            print_text("\n\n"+("**")*52+"\n", "magenta", highlight="on_white")
 
-        self.__store_data_to_file()
+            print_info_text("Running funtions before exiting...\n")
 
-        print_text()
+            self.__store_data_to_file()
 
-        self.__update_firebase_db()
+            print_text()
 
-        print_text("\nExiting...", color="cyan")
-        
+            self.__update_firebase_db()
+
+            print_text("\nExiting...", color="cyan")
+            
+            sys.exit()
+
+        elif os.getenv("db_choice") == "2":
+
+            sys.exit()
+
         sys.exit()
-
