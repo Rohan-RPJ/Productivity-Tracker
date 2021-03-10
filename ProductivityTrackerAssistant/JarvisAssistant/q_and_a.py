@@ -5,9 +5,9 @@ from .speak import speak
 
 
 
-retrieve_user_data = retrieve_data.RetrieveUserData().getInstance()
-retrieve_sw_data = retrieve_data.RetrieveSoftwareData().getInstance()
-retrieve_web_data = retrieve_data.RetrieveWebsiteData().getInstance()
+retrieve_user_data = retrieve_data.RetrieveUserData.getInstance()
+retrieve_sw_data = retrieve_data.RetrieveSoftwareData.getInstance()
+retrieve_web_data = retrieve_data.RetrieveWebsiteData.getInstance()
 
 username = retrieve_user_data.get_firstname()
 

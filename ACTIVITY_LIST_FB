@@ -1,98 +1,122 @@
-7
-5
+2
+13
 Computers
 False
 True
 True
 cmd
 cmd
-0-h 0-m 7-s
+0-h 0-m 2-s
 None
-Society
+Others
 False
 False
 True
-sublime_text
-sublime_text
-0-h 0-m 1-s
-None
-Computers
-False
-True
-True
-Docker Desktop
-Docker Desktop
-0-h 0-m 1-s
-None
-Computers
-False
-True
-True
-Gliffy Diagrams - DB-Design(Firebase)-4.gliffy
-Gliffy Diagrams - DB-Design(Firebase)-4.gliffy
-0-h 0-m 1-s
-None
-Computers
-False
-True
-True
-notepad
-notepad
+explorer
+explorer
 0-h 0-m 3-s
-None
-Business
-False
-True
-True
-explorer
-explorer
-0-h 0-m 1-s
-None
-Games
-False
-False
-True
-Xbox
-Xbox
-0-h 0-m 9-s
 None
 Computers
 True
 True
 True
 console-firebase-google
-https://console.firebase.google.com/project/productivitytrackerassistant/database/productivitytrackerassistant-default-rtdb/data - Mozilla Firefox
-0-h 0-m 58-s
+https://console.firebase.google.com/project/productivitytrackerassistant/database/productivitytrackerassistant-default-rtdb/data - Google Chrome
+0-h 0-m 1-s
 Sign in – Google accounts
-Computers
-True
-True
-True
-github
-https://github.com/thisbejim/Pyrebase#authentication - Mozilla Firefox
-0-h 0-m 6-s
-GitHub - thisbejim/Pyrebase: A simple python wrapper for the Firebase API.
-Computers
-True
-True
-True
-github
-https://github.com/ - Mozilla Firefox
-0-h 0-m 10-s
-GitHub: Where the world builds software · GitHub
-Computers
-True
-True
-True
-stackoverflow
-https://stackoverflow.com/questions/19747371/python-exit-commands-why-so-many-and-when-should-each-be-used - Mozilla Firefox
-0-h 0-m 8-s
-Python exit commands - why so many and when should each be used? - Stack Overflow
-Games
+Others
 True
 False
 True
-play-google
-https://play.google.com/store/apps/details?id=com.netmarble.bnsmws&hl=en_IN&gl=US - Mozilla Firefox
-0-h 0-m 9-s
-Blade&Soul: Revolution – Apps on Google Play
+"0-h 0-m 0-s"
+https://"0-h 0-m 0-s" - Google Chrome
+0-h 0-m 1-s
+None
+Others
+True
+False
+True
+"0-h 0-m 59-s"
+https://"0-h 0-m 59-s" - Google Chrome
+0-h 0-m 1-s
+None
+Others
+True
+False
+True
+"0-h 0-m 16-s"
+https://"0-h 0-m 16-s" - Google Chrome
+0-h 5-m 53-s
+None
+Others
+True
+False
+True
+"0-h 0-m 16-s"
+https://"0-h 0-m 16-s" - Google Chrome
+0-h 0-m 1-s
+None
+Others
+True
+False
+True
+"0-h 0-m 17-s"
+https://"0-h 0-m 17-s" - Google Chrome
+0-h 1-m 1-s
+None
+Others
+True
+False
+True
+"0-h 0-m 17-s"
+https://"0-h 0-m 17-s" - Google Chrome
+0-h 0-m 46-s
+None
+Others
+True
+False
+True
+algorithmia
+https://algorithmia  - Google Chrome
+0-h 0-m 6-s
+None
+Others
+True
+False
+True
+"0-h 0-m 19-s"
+https://"0-h 0-m 19-s" - Google Chrome
+0-h 0-m 52-s
+None
+Computers
+True
+True
+True
+msn
+https://www.msn.com/en-in/weather/today/Pune,MH,India/we-city?el=rAvZEheBtuR%2B%2B3YAJ%2FrLPFYqd93zKjofPzJwW7oxvbOrpH08eQhFJjxCXFuvw2yy%2F4d9U%2FUS%2BZw6DKJc%2F91CqFWK0y8htxESMfx4XqLm17w%3D&weadegreetype=C&ocid=MNHP_U531&ocid=msedgdhp&day=3 - Microsoft Edge
+0-h 0-m 56-s
+MSN
+Others
+True
+False
+True
+about
+https://about:blank - Microsoft Edge
+0-h 0-m 5-s
+None
+Arts
+True
+False
+False
+msn
+https://www.msn.com/en-in/news/other/modi-warns-bjp-mps-against-skipping-parliament-says-shouldn-t-have-to-remind-you-again-again/ar-BB1erp5S?ocid=msedgntp - Microsoft Edge
+0-h 1-m 35-s
+Modi warns BJP MPs against skipping Parliament, says shouldn’t have to remind you again & again
+Others
+True
+False
+False
+about
+https://about:blank - Microsoft Edge
+0-h 0-m 0-s
+None
