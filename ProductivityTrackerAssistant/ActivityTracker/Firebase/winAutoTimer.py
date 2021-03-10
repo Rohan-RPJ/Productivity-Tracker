@@ -46,14 +46,36 @@ saveToDb = SaveData.getInstance()
 
 class WebWindow:
 
-    def is_web_search(self, a_w):
-        if '/search' in a_w:
-            return '0'
+
+    def is_web_search(self, url):
+
+        if '/search' in url:
+            return True
         else:
-            return a_w
+            return False
 
 
-    def get_web_url(self):
+    def is_valid_url(self, url):
+
+        if self.is_web_search(url):
+            return False
+            
+        url = url.split("://")
+
+        if len(url) == 1:
+            print("len1")
+            return False
+
+        else:
+
+            if url[1].strip() == "":
+                print("len2")
+                return False
+
+            return True
+
+
+    def get_web_url(self, browser_name):
 
         # print_text()
 
@@ -65,7 +87,10 @@ class WebWindow:
 
             try:
 
-                edit = browserControl.EditControl()
+                if browser_name == "chrome":
+                    edit = browserControl.EditControl(Name="Address and search bar")
+                else:
+                    edit = browserControl.EditControl()
 
             except Exception as e:
                 print_exception_text("EditControl Exception in get_web_url: {}".format(e))
@@ -86,9 +111,12 @@ class WebWindow:
 
                 url = "https://" + url
 
-            # print_info_text("URL: {}".format(url))
+            print_info_text("URL: {}".format(url))
 
-            return self.is_web_search(url)
+            if self.is_valid_url(url):
+                return url
+            else:
+                return None
 
         elif sys.platform in PF[2]:
             textOfMyScript = """tell app "google chrome " to get the url of the active tab of window 1"""
@@ -142,17 +170,28 @@ class Windows: # About the windows or applications or websites user opens
 
             app_name = self.new_window_name.split()[-1].lower()
 
+            browser_name = None
+
             if 'chrome' in app_name:
+
                 app_name = " - Google Chrome"
+                browser_name = "chrome"
+
             elif 'firefox' in app_name:
+
                 app_name = " - Mozilla Firefox"
+                browser_name = "firefox"
+
             elif 'edge' in app_name:
+
                 app_name = " - Microsoft Edge"
+                browser_name = "edge"
+
             else:
                 self.isBrowser = False
 
             if self.isBrowser:
-                self.url = self.webWindow.get_web_url()
+                self.url = self.webWindow.get_web_url(browser_name)
 
                 if self.url == None:
                     self.new_window_name = None
@@ -162,7 +201,7 @@ class Windows: # About the windows or applications or websites user opens
 
                 if self.hostname is not None:
                     self.hostname = self.__replace_dot_with_dash(self.hostname)
-
+                print("Getting web info")
                 self.webInfo = WebsiteInfo(self.url)
                 self.title, _ = self.webInfo.get_title_and_desc()  # returns title and description
                 if self.title is not None:

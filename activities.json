@@ -4,7 +4,11 @@
             "software": {
                 "productive": {
                     "Business": {},
-                    "Computers": {},
+                    "Computers": {
+                        "cmd": {
+                            "total_mutual_time": "0-h 0-m 10-s"
+                        }
+                    },
                     "Health": {},
                     "News": {},
                     "Recreation": {},
@@ -25,7 +29,14 @@
             "website": {
                 "productive": {
                     "Business": {},
-                    "Computers": {},
+                    "Computers": {
+                        "github": {
+                            "total_mutual_time": "0-h 0-m 3-s",
+                            "url+title": [
+                                "https://github.com/Rohan-RPJ-*-Rohan-RPJ · GitHub"
+                            ]
+                        }
+                    },
                     "Health": {},
                     "News": {},
                     "Recreation": {},
