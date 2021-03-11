@@ -4,3 +4,7 @@
 4. Windows not sending appropriate signal while closing python script
 5. Optimize voice assistant
 6. Check when user closes intewrnet between tracking
+7. Change software data to be categorized
+8. Pass data from main to renderer process
+9. firebase current user not getting correctly
+10. put all add times in one file

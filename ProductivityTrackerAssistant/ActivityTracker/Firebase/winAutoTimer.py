@@ -33,7 +33,7 @@ import win32process  # to get foreground window thread process id
 from ...Database.FirebaseDatabase.save_data import SaveData
 from ...ML.predictions import *
 from ...print_colored_text import *
-from ..webscrapper import *
+from ..webscrapper_fast import *
 from .winActivity import *
 
 
@@ -50,6 +50,7 @@ class WebWindow:
     def is_web_search(self, url):
 
         if '/search' in url:
+            print_info_text("Google Search")
             return True
         else:
             return False
@@ -63,13 +64,11 @@ class WebWindow:
         url = url.split("://")
 
         if len(url) == 1:
-            print("len1")
             return False
 
         else:
 
             if url[1].strip() == "":
-                print("len2")
                 return False
 
             return True
@@ -111,7 +110,7 @@ class WebWindow:
 
                 url = "https://" + url
 
-            print_info_text("URL: {}".format(url))
+            # print_info_text("URL: {}".format(url))
 
             if self.is_valid_url(url):
                 return url
@@ -201,7 +200,8 @@ class Windows: # About the windows or applications or websites user opens
 
                 if self.hostname is not None:
                     self.hostname = self.__replace_dot_with_dash(self.hostname)
-                print("Getting web info")
+
+                # print("Getting web info")
                 self.webInfo = WebsiteInfo(self.url)
                 self.title, _ = self.webInfo.get_title_and_desc()  # returns title and description
                 if self.title is not None:
@@ -247,7 +247,7 @@ class Windows: # About the windows or applications or websites user opens
                     self.software_app_detail = _active_window_name
                 else:
                     _active_window_name = _active_window_name 
-                    self.software_app_detail =  win32gui.GetWindowText(window) 
+                    self.software_app_detail =  win32gui.GetWindowText(window)
 
         elif sys.platform in PF[2]:
             _active_window_name = (NSWorkspace.sharedWorkspace()
@@ -312,12 +312,20 @@ class AutoTimer(Windows):
             win_name = self.new_window_name
 
             if win_name == None:
-                print_info_text("Invalid Software activity", "blue")
+                print_info_text("Invalid Software activity")
                 return (None, -1)
+
+            if self.software_app_detail == None:
+                x=''
+            else:
+                x=self.software_app_detail
+
+            win_name = win_name + x
+
             # print_text("Sowftware app name: ", win_name)
             for activity in self.activityList.sw_activities:
                 # print_text("Matching with: ", activity.key)
-                if activity.key == win_name:
+                if str(activity.key)+str(activity.name) == win_name:
                     return (activity, 1)
         
         return (None, 1)
@@ -329,7 +337,7 @@ class AutoTimer(Windows):
             self.prediction_results["category"] = self.webPrediction.get_website_prediction(self.webInfo)
             self.prediction_results["isProductive"] = self.webPrediction.is_productive(self.prediction_results["category"])
         else:
-            self.softwarePrediction = SoftwarePrediction(self.new_window_name)
+            self.softwarePrediction = SoftwarePrediction(self.software_app_detail)
             self.prediction_results["category"] = self.softwarePrediction.get_software_prediction()
             self.prediction_results["isProductive"] = self.softwarePrediction.is_productive(self.prediction_results["category"])
 
@@ -402,7 +410,7 @@ class AutoTimer(Windows):
                             self.activityList.web_activities += (self.new_activity,)
                         else:
                             self.new_activity = WinActivity(self.new_window_name, self.time_entry.serialize(), self.prediction_results)
-                            self.new_activity.initSoftware(self.new_window_name)
+                            self.new_activity.initSoftware(self.software_app_detail)
                             self.activityList.sw_activities += (self.new_activity,)
                     else:
                         print_info_text("Activity already exists in db: {}".format(self.activity.key))

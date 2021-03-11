@@ -21,8 +21,8 @@ class WebsiteInfo:
 	
 	def __init__(self,url):
 		self.url = url
-		self.title = None
-		self.description = None
+		self.__title = None
+		self.__description = None
 		self.set_title_and_desc()
 
 
@@ -55,7 +55,8 @@ class WebsiteInfo:
 		if soup_obj is not None:
 			try:
 				# get title of website
-				self.title = soup_obj.find('title').string
+				self.__title = soup_obj.find('title').string
+				print(self.__title)
 			except Exception as e:
 				# print_exception_text("Exception occurred while finding title: {}".format(e))
 				print_warning_text("The website has no title")
@@ -63,27 +64,28 @@ class WebsiteInfo:
 			try:
 				# get description of website
 				meta_tag = soup_obj.find('meta', attrs={'name': 'description'})
-				self.description = meta_tag['content']
+				self.__description = meta_tag['content']
+				print(self.__description)
 			except Exception as e:
 				# print_exception_text("Exception occurred while finding description: {}".format(e))
 				print_warning_text("The website has no description")
 
 
 	def get_title_and_desc(self):
-		return (self.title, self.description)
+		return (self.__title, self.__description)
 
 
 	# returns title + description
 	def get_text(self):
-		if self.title is None:
-			if self.description is None:
+		if self.__title is None:
+			if self.__description is None:
 				return None
 			else:
-				return self.description
-		elif self.description is None:
-			return self.title
+				return self.__description
+		elif self.__description is None:
+			return self.__title
 		else: 
-			return self.title + " " + self.description
+			return self.__title + " " + self.__description
 
 
 	def clean_text(self, text):
@@ -92,3 +94,35 @@ class WebsiteInfo:
 			return text
 		else:
 			return None
+
+
+# wi = WebsiteInfo("https://amazon.com")
+
+
+"""
+# testing webscrapper
+
+from time import time
+
+def get_avg_extraction_time():
+
+	avg_time = 0
+	steps = 10
+	for i in range(steps):
+		t1=time()
+		wi = WebsiteInfo("https://amazon.in")
+		t2=time()
+
+		avg_time += (t2-t1)
+
+	print("Total time for extracting {} times: {}".format(steps, avg_time))
+	avg_time /= steps
+	print("Avg time for extracting once: {}".format(avg_time))
+
+
+get_avg_extraction_time()
+
+# Total time for extracting 10 times: 21.98288607597351
+# Avg time for extracting once: 2.198288607597351
+
+"""

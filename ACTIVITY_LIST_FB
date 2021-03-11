@@ -1,36 +1,60 @@
-4
-10
-Computers
+7
+12
+Science
 False
 True
-True
-cmd
-cmd
-0-h 0-m 6-s
-None
-Business
-False
-True
-True
-explorer
-explorer
-0-h 0-m 47-s
-None
-Society
-False
-False
 True
 sublime_text
+D:\BE-Project\Website+Software Tracking\Productivity-Tracker\ProductivityTrackerAssistant\ActivityTracker\Firebase\winAutoTimer.py (Productivity-Tracker) - Sublime Text (UNREGISTERED)
+0-h 0-m 10-s
+None
+Home
+False
+False
+True
+cmd
+Command Prompt - python  main.py
+0-h 0-m 5-s
+None
+Science
+False
+True
+True
 sublime_text
+D:\BE-Project\Website+Software Tracking\Productivity-Tracker\activities.json (Productivity-Tracker) - Sublime Text (UNREGISTERED)
+0-h 0-m 1-s
+None
+Science
+False
+True
+True
+sublime_text
+D:\BE-Project\Website+Software Tracking\Productivity-Tracker\ProductivityTrackerAssistant\ActivityTracker\main.py (Productivity-Tracker) - Sublime Text (UNREGISTERED)
+0-h 0-m 8-s
+None
+Science
+False
+True
+True
+sublime_text
+D:\BE-Project\Website+Software Tracking\Productivity-Tracker\ProductivityTrackerAssistant\ActivityTracker\webscrapper_fast.py (Productivity-Tracker) - Sublime Text (UNREGISTERED)
+0-h 0-m 40-s
+None
+Others
+False
+False
+True
+explorer
+
 0-h 0-m 1-s
 None
 Computers
 False
 True
 True
-ShellExperienceHost
-ShellExperienceHost
-0-h 0-m 1-s
+explorer
+Task Switching
+0-h 0-m 14-s
 None
 Computers
 True
@@ -38,77 +62,93 @@ True
 True
 console-firebase-google
 https://console.firebase.google.com/u/0/project/productivitytrackerassistant/database/productivitytrackerassistant-default-rtdb/data - Mozilla Firefox
-0-h 0-m 16-s
+0-h 4-m 2-s
 Sign in – Google accounts
-Science
-True
-True
-True
-algorithmia
-https://algorithmia.com/users/anoni - Mozilla Firefox
-0-h 0-m 1-s
-anoni - Algorithmia
 Computers
 True
 True
 True
-web-whatsapp
-https://web.whatsapp.com - Google Chrome
-0-h 0-m 18-s
-Error
-Computers
-True
-True
-True
-drive-google
-https://drive.google.com/drive/folders/1h0xX8fOkQK7Uq6W-rBl_YdtQ1IGOE7-4 - Google Chrome
-0-h 0-m 49-s
-Output â€“ Google Drive
-Games
-True
-False
-True
-play-google
-https://play.google.com/store/apps/details?id=com.netmarble.bnsmws&hl=en_IN&gl=US - Mozilla Firefox
-0-h 0-m 1-s
-Blade&Soul: Revolution – Apps on Google Play
-Sports
-True
-True
-False
-teams-algorithmia
-https://teams.algorithmia.com/algorithms/textclassifier - Mozilla Firefox
-0-h 0-m 6-s
-Algorithmia Teams
-Shopping
-True
-False
-False
-amazon
-https://amazon.in/?ie=UTF8&ext_vrnc=hi&tag=googhydrabk-21&ascsubtag=_k_EAIaIQobChMI2pX5seSl7wIVEg4rCh0DTgNyEAAYASAAEgKVs_D_BwE_k_&ext_vrnc=hi&gclid=EAIaIQobChMI2pX5seSl7wIVEg4rCh0DTgNyEAAYASAAEgKVs_D_BwE - Google Chrome
-0-h 0-m 31-s
-Online Shopping site in India: Shop Online for Mobiles, Books, Watches, Shoes and More - Amazon.in
-Computers
-True
-True
-True
-google
-https://google.com - Microsoft Edge
-0-h 0-m 3-s
-Google
+github
+https://github.com/ShubhamGargade/Productivity-Tracker/pull/11 - Mozilla Firefox
+0-h 0-m 25-s
+Url fetching from chrome now by Rohan-RPJ · Pull Request #11 · ShubhamGargade/Productivity-Tracker · GitHub
 Others
 True
 False
 True
-hell
-https://hell - Microsoft Edge
-0-h 0-m 6-s
+get
+https://get - Mozilla Firefox
+0-h 0-m 1-s
 None
+Others
+True
+False
+True
+get tab name of b
+https://get tab name of b - Mozilla Firefox
+0-h 0-m 1-s
+None
+Others
+True
+False
+True
+get tab name of browser
+https://get tab name of browser  - Mozilla Firefox
+0-h 0-m 19-s
+None
+Computers
+True
+True
+True
+stackoverflow
+https://stackoverflow.com/questions/58431693/how-to-find-the-list-of-tab-names-in-actively-opened-browser-using-python-script - Mozilla Firefox
+0-h 0-m 37-s
+selenium - How to find the list of tab names in actively opened browser using python script - Stack Overflow
+Shopping
+True
+False
+True
+amazon
+https://amazon.in/?ie=UTF8&ext_vrnc=hi&tag=googhydrabk-21&ascsubtag=_k_EAIaIQobChMI2pX5seSl7wIVEg4rCh0DTgNyEAAYASAAEgKVs_D_BwE_k_&ext_vrnc=hi&gclid=EAIaIQobChMI2pX5seSl7wIVEg4rCh0DTgNyEAAYASAAEgKVs_D_BwE - Google Chrome
+0-h 0-m 44-s
+Online Shopping site in India: Shop Online for Mobiles, Books, Watches, Shoes and More - Amazon.in
 Computers
 True
 True
 True
 github
 https://github.com/Rohan-RPJ - Google Chrome
-0-h 0-m 5-s
+0-h 0-m 3-s
 Rohan-RPJ · GitHub
+News
+True
+True
+True
+reddit
+https://www.reddit.com/r/regex/ - Mozilla Firefox
+0-h 8-m 29-s
+reddit: the front page of the internet
+Computers
+True
+True
+True
+console-firebase-google
+https://console.firebase.google.com/u/0/project/productivitytrackerassistant/database/productivitytrackerassistant-default-rtdb/data - Mozilla Firefox
+0-h 0-m 26-s
+Sign in - Google Accounts
+Computers
+True
+True
+True
+github
+https://github.com/Rohan-RPJ/Productivity-Tracker - Mozilla Firefox
+0-h 0-m 3-s
+GitHub - Rohan-RPJ/Productivity-Tracker
+Computers
+True
+True
+True
+github
+https://github.com/thisbejim/Pyrebase - Mozilla Firefox
+0-h 0-m 3-s
+GitHub - thisbejim/Pyrebase: A simple python wrapper for the Firebase API.
