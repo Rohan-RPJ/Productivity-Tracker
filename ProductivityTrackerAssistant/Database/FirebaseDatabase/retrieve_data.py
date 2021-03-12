@@ -12,10 +12,13 @@ from . import db
 
 # Local application imports
 from ...Constants.keys import *
+from ...time_arithmetic import TimeArithmetic
 
 
 
-initial_time = "0-h 0-m 0-s"
+time_arith = TimeArithmetic()
+
+initial_time = time_arith.initial_time
 url_title_separator = "-*-"
 
 # A list of class into which websites are categorized
@@ -47,19 +50,6 @@ def get_max_time_indexes(time_list):
 				max_indexes.append(i)
 
 		return max_indexes
-
-
-def add_time(t1, t2):  # time t1 and t2 will be in 'x-h x-m x-s' format
-	t1_h, t1_m, t1_s = [int(t.split('-')[0]) for t in t1.split()]
-	t2_h, t2_m, t2_s = [int(t.split('-')[0]) for t in t2.split()]
-	secs = (t1_s + t2_s)
-	mins = (t1_m + t2_m + secs//60)
-	hrs = (t1_h + t2_h + mins//60)
-	secs %= 60
-	mins %= 60
-	time_spent = str(hrs) + "-h " + str(mins) + "-m " + str(secs)+ "-s"
-
-	return time_spent
 
 
 def get_p_up_str(isProductive):
@@ -115,7 +105,7 @@ class RetrieveUserData:
 	def get_total_productive_time(self):
 		tspt = retrieve_sw_data.get_total_productive_time()
 		twpt = retrieve_web_data.get_total_productive_time()
-		tpt = add_time(tspt, twpt)
+		tpt = time_arith.add_time(tspt, twpt)
 		
 		return tpt
 
@@ -123,7 +113,7 @@ class RetrieveUserData:
 	def get_total_unproductive_time(self):
 		tsupt = retrieve_sw_data.get_total_unproductive_time()
 		twupt = retrieve_web_data.get_total_unproductive_time()
-		tupt = add_time(tsupt, twupt)
+		tupt = time_arith.add_time(tsupt, twupt)
 		
 		return tupt
 
