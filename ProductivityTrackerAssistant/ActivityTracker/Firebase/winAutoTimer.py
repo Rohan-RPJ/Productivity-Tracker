@@ -337,7 +337,7 @@ class AutoTimer(Windows):
             self.prediction_results["category"] = self.webPrediction.get_website_prediction(self.webInfo)
             self.prediction_results["isProductive"] = self.webPrediction.is_productive(self.prediction_results["category"])
         else:
-            self.softwarePrediction = SoftwarePrediction(self.software_app_detail)
+            self.softwarePrediction = SoftwarePrediction(self.new_window_name + " " + self.software_app_detail)
             self.prediction_results["category"] = self.softwarePrediction.get_software_prediction()
             self.prediction_results["isProductive"] = self.softwarePrediction.is_productive(self.prediction_results["category"])
 
@@ -368,10 +368,9 @@ class AutoTimer(Windows):
                         print_info_text("New Window: {}".format(self.new_window_name))
                         print_info_text("Active Window: {}".format(self.active_window_name))
                         print_info_text("New Window = Active Window")
-                        count += 1
                     else:
                         print_text("\r{}".format(count), end="")
-                        count += 1
+                    count += 1
 
                 else:
                     if count:

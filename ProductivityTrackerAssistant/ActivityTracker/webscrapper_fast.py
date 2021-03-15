@@ -105,7 +105,7 @@ class WebsiteInfo:
 			return None
 
 
-wi = WebsiteInfo("https://amazon.com")
+# wi = WebsiteInfo("https://amazon.com")
 
 
 """

@@ -1,0 +1,9 @@
+1. get uid from electron 
+2. only desc for youtube videos should be there
+3. Optimize voice assistant
+4. Check when user closes intewrnet between tracking
+5. Optimize software data to be categorized
+6. Pass data from main to renderer process
+7. firebase current user not getting correctly
+8. Store data in electron sqlite if internet is off
+9. In main.py - Check Internet Connection and send data to frontend if not connected to Internet

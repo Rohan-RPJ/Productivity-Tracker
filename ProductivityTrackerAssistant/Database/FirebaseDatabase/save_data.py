@@ -26,8 +26,10 @@ retrieve_user_data = RetrieveUserData.getInstance()
 retrieve_tracking_history = RetrieveTrackingHistory.getInstance()
 
 time_arith = TimeArithmetic()
-
+add_time = time_arith.add_time  # add_time method instance
+sub_time = time_arith.sub_time  # sub_time method instance
 initial_time = time_arith.initial_time
+
 date_format = "%d-%m-%y"
 url_title_separator = "-*-"
 
@@ -239,16 +241,16 @@ class SaveData:
 			return
 
 		if tmt == None:
-			tmt = time_arith.add_time(self.activity.time_spent, initial_time)
+			tmt = add_time(self.activity.time_spent, initial_time)
 		else:
-			tmt = time_arith.add_time(self.activity.time_spent, tmt)
+			tmt = add_time(self.activity.time_spent, tmt)
 		
 		# update total mutual time
 		db.child(wa_sa_str).child(uid).child(p_up_str).child(self.activity.category).child(self.activity.key).update({"tmt": tmt})
 
     	# get total category time
 		tct = db.child(wa_sa_str).child(uid).child(p_up_str).child(self.activity.category).child("tct").get().val()
-		tct = time_arith.add_time(self.activity.time_spent, tct)
+		tct = add_time(self.activity.time_spent, tct)
 		
 		# update total category time
 		db.child(wa_sa_str).child(uid).child(p_up_str).child(self.activity.category).update({"tct": tct})
@@ -310,21 +312,21 @@ class SaveData:
 		# print(tot_app_p_up_time, tot_app_tracking_time, tot_tracking_time)
 		# raise Exception
 
-		# print(time_arith.add_time(self.activity.time_spent, tot_app_p_up_time))
-		# print(time_arith.add_time(self.activity.time_spent, tot_app_tracking_time))
-		# print(time_arith.add_time(self.activity.time_spent, tot_tracking_time))
+		# print(add_time(self.activity.time_spent, tot_app_p_up_time))
+		# print(add_time(self.activity.time_spent, tot_app_tracking_time))
+		# print(add_time(self.activity.time_spent, tot_tracking_time))
 		# raise Exception
 
 		db.update({
-		    wa_sa_str+'/'+str(uid)+'/'+tot_app_tracking_time_str: time_arith.add_time(self.activity.time_spent, tot_app_tracking_time)
+		    wa_sa_str+'/'+str(uid)+'/'+tot_app_tracking_time_str: add_time(self.activity.time_spent, tot_app_tracking_time)
 		})
 
 		db.update({
-		    wa_sa_str+'/'+str(uid)+'/'+p_up_str+'/'+tot_app_p_up_time_str: time_arith.add_time(self.activity.time_spent, tot_app_p_up_time)
+		    wa_sa_str+'/'+str(uid)+'/'+p_up_str+'/'+tot_app_p_up_time_str: add_time(self.activity.time_spent, tot_app_p_up_time)
 		})
 
 		db.update({
-		    "users/"+str(uid)+'/'+tot_tracking_time_str: time_arith.add_time(self.activity.time_spent, tot_tracking_time)
+		    "users/"+str(uid)+'/'+tot_tracking_time_str: add_time(self.activity.time_spent, tot_tracking_time)
 		})
 
 		self.update_individual_app_tracking_time(web_sw_str)
@@ -343,7 +345,7 @@ class SaveData:
 
 		# update individual app(website or software) tracking time
 		db.update({
-			i_w_s_tt_str+'/'+str(uid)+'/'+self.activity.key: time_arith.add_time(self.activity.time_spent, ind_app_tracking_time)
+			i_w_s_tt_str+'/'+str(uid)+'/'+self.activity.key: add_time(self.activity.time_spent, ind_app_tracking_time)
 		})
 
 
@@ -399,9 +401,9 @@ class SaveData:
 			data = {
 
 				"uth/"+str(uid)+"/ads/" : {
-					"ttt" : time_arith.add_time(time_arith.sub_time(cdtt["ttt"], cidtt["ttt"]), adtt["ttt"]), 
-					"tpt" : time_arith.add_time(time_arith.sub_time(cdtt["tpt"], cidtt["tpt"]), adtt["tpt"]), 
-					"tupt" : time_arith.add_time(time_arith.sub_time(cdtt["tupt"], cidtt["tupt"]), adtt["tupt"]), 
+					"ttt" : add_time(sub_time(cdtt["ttt"], cidtt["ttt"]), adtt["ttt"]), 
+					"tpt" : add_time(sub_time(cdtt["tpt"], cidtt["tpt"]), adtt["tpt"]), 
+					"tupt" : add_time(sub_time(cdtt["tupt"], cidtt["tupt"]), adtt["tupt"]), 
 				}
 			}
 
@@ -435,9 +437,9 @@ class SaveData:
 				data = {
 
 					"uth/"+str(uid)+"/ads/" : {
-						"ttt" : time_arith.add_time(time_arith.sub_time(adtt["ttt"], odtt["ttt"]), cdtt["ttt"]), 
-						"tpt" : time_arith.add_time(time_arith.sub_time(adtt["tpt"], odtt["tpt"]), cdtt["tpt"]), 
-						"tupt" : time_arith.add_time(time_arith.sub_time(adtt["tupt"], odtt["tupt"]), cdtt["tupt"]), 
+						"ttt" : add_time(sub_time(adtt["ttt"], odtt["ttt"]), cdtt["ttt"]), 
+						"tpt" : add_time(sub_time(adtt["tpt"], odtt["tpt"]), cdtt["tpt"]), 
+						"tupt" : add_time(sub_time(adtt["tupt"], odtt["tupt"]), cdtt["tupt"]), 
 					}
 				}
 
@@ -471,9 +473,9 @@ class SaveData:
 					data = {
 
 						"uth/"+str(uid)+"/ads/" : {
-							"ttt" : time_arith.add_time(adtt["ttt"], cdtt["ttt"]), 
-							"tpt" : time_arith.add_time(adtt["tpt"], cdtt["tpt"]), 
-							"tupt" : time_arith.add_time(adtt["tupt"], cdtt["tupt"]), 
+							"ttt" : add_time(adtt["ttt"], cdtt["ttt"]), 
+							"tpt" : add_time(adtt["tpt"], cdtt["tpt"]), 
+							"tupt" : add_time(adtt["tupt"], cdtt["tupt"]), 
 						}
 					}
 
@@ -569,9 +571,9 @@ class SaveData:
 
 				old_tracking_times = retrieve_tracking_history.get_ind_day_tracking_times(old_date)
 
-				dttt = time_arith.add_time(dttt, old_tracking_times["ttt"])
-				dtpt = time_arith.add_time(dtpt, old_tracking_times["tpt"])
-				dtupt = time_arith.add_time(dtupt, old_tracking_times["tupt"])
+				dttt = add_time(dttt, old_tracking_times["ttt"])
+				dtpt = add_time(dtpt, old_tracking_times["tpt"])
+				dtupt = add_time(dtupt, old_tracking_times["tupt"])
 
 				db.child("uth").child(uid).child("id").child(old_date).remove()
 
@@ -590,9 +592,9 @@ class SaveData:
 			data = {
 
 				"uth/"+str(uid)+"/ads/" : {
-					"ttt" : time_arith.sub_time(all_days_times["ttt"], dttt), 
-					"tpt" : time_arith.sub_time(all_days_times["tpt"], dtpt),
-					"tupt" : time_arith.sub_time(all_days_times["tupt"], dtupt)
+					"ttt" : sub_time(all_days_times["ttt"], dttt), 
+					"tpt" : sub_time(all_days_times["tpt"], dtpt),
+					"tupt" : sub_time(all_days_times["tupt"], dtupt)
 				}
 			}
 

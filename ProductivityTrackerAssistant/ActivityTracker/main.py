@@ -24,8 +24,6 @@ from .Firebase import winAutoTimer as fwat
 
 
 
-# sys.setrecursionlimit(10000)
-
 class Backend:
 
     def __init__(self):

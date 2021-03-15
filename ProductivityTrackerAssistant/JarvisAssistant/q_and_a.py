@@ -1,4 +1,3 @@
-
 from .text_matching import TextMatching
 from ..Database.FirebaseDatabase import retrieve_data
 from .speak import speak
