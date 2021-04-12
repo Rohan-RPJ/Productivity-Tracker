@@ -53,7 +53,7 @@ pywin32==228
 pywinauto==0.6.8
 PyYAML==5.4.1
 regex==2020.11.13
-requests==2.11.1
+requests==2.20.0
 requests-file==1.5.1
 requests-toolbelt==0.7.0
 rsa==4.7.1
