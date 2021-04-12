@@ -36,7 +36,7 @@ psutil==5.8.0
 pyasn1==0.4.8
 pyasn1-modules==0.2.8
 PyAudio @ file:///C:/Users/rohan/pipwin/PyAudio-0.2.11-cp39-cp39-win_amd64.whl
-pycryptodome==3.4.3
+pycryptodome==3.6.6
 pyjsparser==2.7.1
 pyparsing==2.4.7
 pypiwin32==223
