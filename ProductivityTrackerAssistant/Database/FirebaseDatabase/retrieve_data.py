@@ -27,7 +27,7 @@ unproductive=[c for i,c in UNPRODUCTIVE_STR.items()]
 
 
 class user:
-	uid = 123
+	uid = "cfVlgreMYJal9ENPcBpygT4THLS2"
 uid = user.uid
 
 

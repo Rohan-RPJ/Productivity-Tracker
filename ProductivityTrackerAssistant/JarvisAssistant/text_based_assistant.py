@@ -2,7 +2,7 @@ import datetime
 
 from .text_matching import TextMatching
 from ..Database.FirebaseDatabase import retrieve_data
-from .Constants.questions import QUES
+from .Constants.questions import *
 from .q_and_a import QueAns
 from .speak import speak
 
@@ -14,6 +14,7 @@ retrieve_web_data = retrieve_data.RetrieveWebsiteData.getInstance()
 
 username = retrieve_user_data.get_firstname()
 
+stop_assistant_texts = ["bye", "stop", "shutdown", "shut down"]
 
 class TextAssistant:
 
@@ -27,32 +28,89 @@ class TextAssistant:
 		self.recognize_main()
 
 
+	def stmt_contains_stop_texts(self, statement):
+		for stop_text in stop_assistant_texts:
+			if stop_text in statement:
+				return 1
+
+		return 0
+
+
 	def recognize_main(self):
 
-		self.greet()
+		# self.greet()
 
-		QUES_KEYS = list(map(str, list(QUES.keys())))
+		print("\n1.Give List of Questions  2.Enter Input Question: ")
 
-		try:
-			while True:
+		choice = input("\nEnter a choice: ")
 
-				for i,que in enumerate(QUES.values()):
-					print(i, ": ", que)
 
-				choice = input("\nEnter Choice: ")
+		if choice=="1":
 
-				if choice in QUES_KEYS:
+			QUES_KEYS = list(map(str, list(QUES_SHOW.keys())))
 
-					self.ques_ans(int(choice))
+			try:
+				while True:
 
-				else:
+					for i,que in enumerate(QUES_SHOW.values()):
+						print(i+1, ": ", que)
 
-					speak('your personal assistant Jarvis is shutting down,Good bye')
-					print('your personal assistant Jarvis is shutting down,Good bye')
-					break
-					
-		except Exception as e:
-			print(e)
+					choice = input("Enter Question number: ")
+					choice = "q"+choice
+
+					if choice in QUES_KEYS:
+
+						self.ques_ans(map_show_to_actual[choice])
+
+					else:
+
+						speak('Your personal assistant Jarvis is shutting down,Good bye')
+						print('Your personal assistant Jarvis is shutting down,Good bye')
+						break
+						
+			except Exception as e:
+				print(e)
+
+		elif choice=="2":
+
+			try:
+				while True:
+
+					ip_ques = input("Enter your question: ")
+
+					if self.__is_statement_valid(ip_ques):
+
+						if self.stmt_contains_stop_texts(ip_ques):
+
+							speak('your personal assistant Jarvis is shutting down,Good bye')
+							print('your personal assistant Jarvis is shutting down,Good bye')
+							break
+
+						ip_ques = ip_ques.lower()
+						qm = TextMatching(list(QUES.values()))
+						qm.match_text(ip_ques)
+						que_ind = qm.get_matched_text_index()
+
+						self.ques_ans(que_ind)
+						
+					else:
+						print("\nEnter a valid question")
+						continue
+			except Exception as e:
+				print(e)
+
+		else:
+			print("Invalid choice")
+
+
+	def __is_statement_valid(self, statement):
+		if statement == -1:
+			speak("Pardon me, please say that again")
+		elif statement == -2:
+			speak("Please check your internet connection")
+		else:
+			return 1
+		return 0
 
 
 	def greet(self):
@@ -72,7 +130,7 @@ class TextAssistant:
 
 
 	def ques_ans(self, que_ind):
-
+		print("QueInd: ",que_ind)
 		if que_ind == 0:  # user asking about a particular software application
 			
 			speak("Please provide the software name")

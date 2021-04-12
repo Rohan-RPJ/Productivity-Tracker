@@ -38,3 +38,29 @@ QUES = {
 	17: "hey jarvis I want to know tell me show me all the applications apps I have used",
 
 }
+
+
+QUES_SHOW = {
+
+	"q1": "Tell me time spent on all software applications",
+
+	"q2": "Tell me time spent on all websites",
+
+	"q3": "Tell me total time spent on all applications",
+	
+	"q4": "Tell me total time spent on all software applications",
+
+	"q5": "Tell me total time spent on all websites",
+
+	"q6": "Tell me on which software application I have spent maximum time",
+
+	"q7": "Tell me on which software application I have spent maximum time",
+
+	"q8": "Tell me how much productive time I have spent",
+
+	"q9": "Tell me how much unproductive time I have spent",
+
+}
+
+
+map_show_to_actual = {"q1": 0, "q2": 1, "q3": 2, "q4": 4, "q5": 5, "q6": 9, "q7": 10, "q8": 11, "q9": 14}
