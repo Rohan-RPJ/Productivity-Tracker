@@ -49,7 +49,7 @@ Python-EasyConfig==0.1.7
 python-jwt==2.0.1
 pyttsx3==2.90
 pytz==2020.5
-pywin32==228
+pywin32==301
 pywinauto==0.6.8
 PyYAML==5.4.1
 regex==2020.11.13
